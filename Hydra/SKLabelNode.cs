@@ -13,7 +13,6 @@ namespace Hydra
         string text;
         Color color;
         Vector2 origin;
-        float scale;
         SpriteEffects effects;
         float layerDepth;
 
@@ -32,7 +31,7 @@ namespace Hydra
             zRotation = 0;
             Vector2 size = spriteFont.MeasureString(text);
             origin = new Vector2(size.X * 0.5f, size.Y * 0.5f);
-            scale = 0.7419354839f;
+            scale = Vector2.One;
             effects = SpriteEffects.None;
             layerDepth = 0;
         }

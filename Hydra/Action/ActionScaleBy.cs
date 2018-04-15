@@ -42,8 +42,7 @@ namespace Hydra
 
             elapsed += dt;
 
-            SKSpriteNode spriteNode = (SKSpriteNode)node;
-            spriteNode.scale += speed * dt;
+            node.scale += speed * dt;
         }
     }
 }

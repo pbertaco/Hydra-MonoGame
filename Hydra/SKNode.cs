@@ -31,6 +31,8 @@ namespace Hydra
             }
         }
 
+        internal Vector2 scale;
+
         internal bool isHidden;
 
         internal object userData;
@@ -58,7 +60,15 @@ namespace Hydra
         {
             SKAction copy = action.copy();
             copy.runOnNode(this);
-            actions.Add(key, copy);
+
+            if (actions.ContainsKey(key))
+            {
+                actions[key] = copy;
+            }
+            else
+            {
+                actions.Add(key, copy);
+            }
         }
 
         internal void run(SKAction action)

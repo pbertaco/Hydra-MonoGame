@@ -17,7 +17,8 @@ namespace Hydra
         Color drawColor;
 
         Color _color;
-        internal Color color {
+        internal Color color
+        {
             get
             {
                 return _color;
@@ -32,10 +33,12 @@ namespace Hydra
         float _colorBlendFactor;
         internal float colorBlendFactor
         {
-            get {
+            get
+            {
                 return _colorBlendFactor;
             }
-            set {
+            set
+            {
                 _colorBlendFactor = value;
                 drawColor = color * (1.0f - _colorBlendFactor);
             }
@@ -65,7 +68,7 @@ namespace Hydra
         }
 
         Vector2 _scale;
-        internal Vector2 scale
+        internal new Vector2 scale
         {
             get
             {
@@ -131,7 +134,7 @@ namespace Hydra
             }
 
             beforeDraw();
-            
+
             Game1.spriteBatch.Draw(texture2D, position + this.position, sourceRectangle, drawColor * this.alpha * alpha, zRotation, origin, drawScale, effects, layerDepth);
 
             drawChildren(position, alpha);
