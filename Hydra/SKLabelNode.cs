@@ -42,7 +42,7 @@ namespace Hydra
             {
                 return;
             }
-            Game1.spriteBatch.DrawString(spriteFont, text, position + this.position, color * this.alpha * alpha, zRotation, origin, scale, effects, layerDepth);
+            Game1.spriteBatch.DrawString(spriteFont, text, position + this.position, color * this.alpha * alpha, zRotation, origin, scale * 2, effects, layerDepth);
             base.draw(position, alpha);
         }
     }

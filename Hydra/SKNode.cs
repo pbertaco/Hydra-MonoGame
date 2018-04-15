@@ -108,9 +108,9 @@ namespace Hydra
                 keyValuePair.Value.evaluateWithNode(this, dt);
             }
 
-            foreach (var node in children)
+            for (int i = children.Count - 1; i >= 0; i--)
             {
-                node.evaluateActions(dt);
+                children[i].evaluateActions(dt);
             }
         }
 
