@@ -201,12 +201,12 @@ namespace Hydra
                 {
                     Touch touch = touches[0];
                     touch.moved(position);
-                    Scene.current.touchMoved(touch);
+                    SKScene.current.touchMoved(touch);
                 }
                 else
                 {
                     Touch touch = new Touch(position);
-                    Scene.current.touchDown(touch);
+                    SKScene.current.touchDown(touch);
                     touches.Add(0, touch);
                 }
             }
@@ -216,7 +216,7 @@ namespace Hydra
                 {
                     Touch touch = touches[0];
                     touch.up(position);
-                    Scene.current.touchUp(touch);
+                    SKScene.current.touchUp(touch);
                     touchUp(touch);
                     touches.Remove(0);
                 }
