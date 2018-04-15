@@ -88,7 +88,7 @@ namespace Hydra
 
         public EmitterNode() : base("spark")
         {
-            GameScene.current.emitterNodeList.Add(this);
+            Scene.current.emitterNodeList.Add(this);
         }
 
         internal void update(float currentTime, float elapsedTime)

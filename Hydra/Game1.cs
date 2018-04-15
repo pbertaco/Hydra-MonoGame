@@ -37,7 +37,7 @@ namespace Hydra
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            samplerState = SamplerState.PointClamp;
+            samplerState = SamplerState.LinearClamp;
 
             touches = new Dictionary<int, Touch>();
         }
@@ -73,7 +73,7 @@ namespace Hydra
 #endif
             graphicsDeviceManager.ApplyChanges();
 
-            GameScene.current = new LoadScene();
+            Scene.current = new GameScene();
 
             updateSize();
 
@@ -91,7 +91,7 @@ namespace Hydra
 
         void updateSize()
         {
-            Vector2 defaultSize = GameScene.defaultSize;
+            Vector2 defaultSize = Scene.defaultSize;
 
             Vector2 currentSize = Vector2.Zero;
 
@@ -114,15 +114,15 @@ namespace Hydra
             currentSize.Y = graphicsDeviceManager.PreferredBackBufferHeight / scale;
 #endif
 
-            GameScene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
-            GameScene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
+            Scene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
+            Scene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
 
             transformMatrix = Matrix.CreateScale(scale);
-            GameScene.currentSize = currentSize;
+            Scene.currentSize = currentSize;
 
-            if (GameScene.current != null)
+            if (Scene.current != null)
             {
-                GameScene.current.updateSize();
+                Scene.current.updateSize();
             }
         }
 
@@ -135,8 +135,8 @@ namespace Hydra
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            GameScene.current.contentManager = Content;
-            GameScene.current.load();
+            Scene.current.contentManager = Content;
+            Scene.current.load();
         }
 
         /// <summary>
@@ -201,12 +201,12 @@ namespace Hydra
                 {
                     Touch touch = touches[0];
                     touch.moved(position);
-                    GameScene.current.touchMoved(touch);
+                    Scene.current.touchMoved(touch);
                 }
                 else
                 {
                     Touch touch = new Touch(position);
-                    GameScene.current.touchDown(touch);
+                    Scene.current.touchDown(touch);
                     touches.Add(0, touch);
                 }
             }
@@ -216,7 +216,7 @@ namespace Hydra
                 {
                     Touch touch = touches[0];
                     touch.up(position);
-                    GameScene.current.touchUp(touch);
+                    Scene.current.touchUp(touch);
                     touchUp(touch);
                     touches.Remove(0);
                 }
@@ -225,17 +225,17 @@ namespace Hydra
             lastMouseState = mouseState;
 #endif
 
-            GameScene.currentTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            GameScene.elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            GameScene.current.update();
-            GameScene.current.camera?.update();
+            Scene.currentTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            Scene.elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Scene.current.update();
+            Scene.current.camera?.update();
 
             base.Update(gameTime);
         }
 
         void touchUp(Touch touch)
         {
-            foreach (Button button in GameScene.current.buttonList)
+            foreach (Button button in Scene.current.buttonList)
             {
                 if (button.state == ButtonState.Pressed)
                 {
@@ -258,10 +258,10 @@ namespace Hydra
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            graphicsDeviceManager.GraphicsDevice.Clear(GameScene.backgroundColor);
+            graphicsDeviceManager.GraphicsDevice.Clear(Scene.backgroundColor);
 
             spriteBatch.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix);
-            GameScene.current.draw();
+            Scene.current.draw();
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -106,7 +106,7 @@ namespace Hydra
 
         public SpriteNode(string assetName)
         {
-            Texture2D texture = GameScene.current.Texture2D(assetName);
+            Texture2D texture = Scene.current.Texture2D(assetName);
 
             load(texture, Color.White, new Vector2(texture.Width, texture.Height));
         }

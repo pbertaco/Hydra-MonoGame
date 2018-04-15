@@ -35,7 +35,7 @@ namespace Hydra
 
         internal Vector2 locationIn(Node node)
         {
-            return position - node.positionInNode(GameScene.current);
+            return position - node.positionInNode(Scene.current);
         }
     }
 }

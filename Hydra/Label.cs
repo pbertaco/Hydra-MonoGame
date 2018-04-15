@@ -19,7 +19,7 @@ namespace Hydra
         {
             sketchPosition = new Vector2(x, y);
             resetPosition();
-            GameScene.current.labelList.Add(this);
+            Scene.current.labelList.Add(this);
         }
 
         internal void resetPosition()

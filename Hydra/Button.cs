@@ -19,7 +19,7 @@ namespace Hydra
         {
             state = ButtonState.Released;
             bounds = texture2D.Bounds;
-            GameScene.current.buttonList.Add(this);
+            Scene.current.buttonList.Add(this);
         }
 
         internal void touchDown()

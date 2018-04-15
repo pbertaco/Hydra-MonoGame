@@ -63,7 +63,7 @@ namespace Hydra
 
         internal void run(Action action)
         {
-            run(action, $"{GameScene.currentTime}{random.NextDouble()}");
+            run(action, $"{Scene.currentTime}{random.NextDouble()}");
         }
 
         internal void run(Action action, string key, Func<object> completionBlock)
@@ -145,7 +145,7 @@ namespace Hydra
 
             if (physicsBody != null)
             {
-                GameScene.current.physicsWorld.RemoveBody(physicsBody);
+                Scene.current.physicsWorld.RemoveBody(physicsBody);
             }
         }
 
@@ -198,7 +198,7 @@ namespace Hydra
         {
             if (physicsBody != null)
             {
-                position = ConvertUnits.ToDisplayUnits(physicsBody.Position) - parent.positionInNode(GameScene.current.gameWorld);
+                position = ConvertUnits.ToDisplayUnits(physicsBody.Position) - parent.positionInNode(Scene.current.gameWorld);
                 zRotation = physicsBody.Rotation;
             }
         }

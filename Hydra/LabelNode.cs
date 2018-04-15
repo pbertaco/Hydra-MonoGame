@@ -25,7 +25,7 @@ namespace Hydra
 
         void load(string assetName, string text)
         {
-            spriteFont = GameScene.current.contentManager.Load<SpriteFont>("SpriteFont/" + assetName);
+            spriteFont = Scene.current.contentManager.Load<SpriteFont>("SpriteFont/" + assetName);
             this.text = text;
             position = Vector2.Zero;
             color = Color.White;

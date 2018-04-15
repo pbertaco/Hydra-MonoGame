@@ -13,7 +13,7 @@ namespace Hydra
 {
     class PhysicsBody : Body
     {
-        public PhysicsBody(Vertices vertices, ShapeType shapeType = ShapeType.Polygon) : base(GameScene.current.physicsWorld)
+        public PhysicsBody(Vertices vertices, ShapeType shapeType = ShapeType.Polygon) : base(Scene.current.physicsWorld)
         {
             switch (shapeType)
             {
@@ -34,7 +34,7 @@ namespace Hydra
             load(vertices);
         }
 
-        public PhysicsBody(Vector2 size, ShapeType shapeType = ShapeType.Unknown, Vertices vertices = null) : base(GameScene.current.physicsWorld)
+        public PhysicsBody(Vector2 size, ShapeType shapeType = ShapeType.Unknown, Vertices vertices = null) : base(Scene.current.physicsWorld)
         {
             switch (shapeType)
             {

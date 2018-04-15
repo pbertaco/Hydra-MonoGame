@@ -22,14 +22,14 @@ namespace Hydra
 
             sketchPosition = new Vector2(x, y);
             resetPosition();
-            GameScene.current.controlList.Add(this);
+            Scene.current.controlList.Add(this);
         }
 
         internal static Vector2 resetPosition(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
             return new Vector2(
-                sketchPosition.X + (GameScene.translate.X * (float)horizontalAlignment),
-                sketchPosition.Y + (GameScene.translate.Y * (float)verticalAlignment)
+                sketchPosition.X + (Scene.translate.X * (float)horizontalAlignment),
+                sketchPosition.Y + (Scene.translate.Y * (float)verticalAlignment)
                 );
         }
 

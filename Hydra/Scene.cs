@@ -11,13 +11,13 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class GameScene : Node
+    public class Scene : Node
     {
-        internal static GameScene current;
-        internal static Color backgroundColor;
+        internal static Scene current;
+        internal static Color backgroundColor = new Color(38, 38, 38);
         internal static Vector2 translate;
         internal static Vector2 currentSize;
-        internal static Vector2 defaultSize = new Vector2(1280, 800);
+        internal static Vector2 defaultSize = new Vector2(667, 375);
 
         internal ContentManager contentManager;
 
@@ -29,7 +29,7 @@ namespace Hydra
         internal CameraNode camera;
 
         internal PhysicsWorld physicsWorld;
-        internal GameWorld gameWorld;
+        internal Node gameWorld;
 
         internal static float currentTime;
         internal static float elapsedTime;
@@ -37,7 +37,7 @@ namespace Hydra
         internal virtual void load()
         {
             physicsWorld = new PhysicsWorld();
-            gameWorld = new GameWorld();
+            gameWorld = new Node();
 
             Control control = new Control("null", defaultSize.X / 2, defaultSize.Y / 2)
             {
@@ -110,7 +110,7 @@ namespace Hydra
 
         }
 
-        internal void presentScene(GameScene scene)
+        internal void presentScene(Scene scene)
         {
             contentManager.Unload();
             scene.contentManager = contentManager;
