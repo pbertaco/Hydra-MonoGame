@@ -8,7 +8,7 @@ namespace Hydra
 {
     public enum SpriteFontName { SpriteFont, KenPixel16, KenPixel18, KenPixel24, KenPixel32 }
 
-    public class Label : LabelNode
+    public class Label : SKLabelNode
     {
         Vector2 sketchPosition;
 
@@ -19,7 +19,7 @@ namespace Hydra
         {
             sketchPosition = new Vector2(x, y);
             resetPosition();
-            Scene.current.labelList.Add(this);
+            SKScene.current.labelList.Add(this);
         }
 
         internal void resetPosition()

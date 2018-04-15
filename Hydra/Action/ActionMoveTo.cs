@@ -6,7 +6,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -22,12 +21,12 @@ namespace Hydra
             this.position = position;
         }
 
-        internal override Action copy()
+        internal override SKAction copy()
         {
             return new ActionMoveTo(position, duration);
         }
 
-        internal override void runOnNode(Node node)
+        internal override void runOnNode(SKNode node)
         {
             speed = (position - node.position) / duration;
         }

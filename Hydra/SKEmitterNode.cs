@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hydra
 {
-    public class EmitterNode : SpriteNode
+    public class SKEmitterNode : SKSpriteNode
     {
         List<Particle> particles = new List<Particle>();
 
@@ -19,7 +19,7 @@ namespace Hydra
         //ParticleRenderOrder particleRenderOrder; // The order in which the emitter’s particles are rendered.
 
         // Defining Which Node Emits Particles
-        internal Node targetNode; // The target node which renders the emitter’s particles.
+        internal SKNode targetNode; // The target node which renders the emitter’s particles.
 
         // Determining a Particle Lifetime
         internal float particleLifetime; // The average lifetime of a particle, in seconds.
@@ -86,9 +86,9 @@ namespace Hydra
 
         float particleCounter;
 
-        public EmitterNode() : base("spark")
+        public SKEmitterNode() : base("spark")
         {
-            Scene.current.emitterNodeList.Add(this);
+            SKScene.current.emitterNodeList.Add(this);
         }
 
         internal void update(float currentTime, float elapsedTime)

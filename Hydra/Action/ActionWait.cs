@@ -6,14 +6,13 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionWait : Action
+    public class ActionWait : SKAction
     {
         float durationRange;
 
@@ -23,12 +22,12 @@ namespace Hydra
             this.durationRange = durationRange;
         }
 
-		internal override Action copy()
+		internal override SKAction copy()
 		{
             return new ActionWait(duration, durationRange);
 		}
 
-		internal override void evaluateWithNode(Node node, float dt)
+		internal override void evaluateWithNode(SKNode node, float dt)
         {
             if (elapsed + dt > duration)
             {

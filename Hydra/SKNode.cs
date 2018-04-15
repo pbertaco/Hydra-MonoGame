@@ -8,7 +8,7 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class Node
+    public class SKNode
     {
         internal static Random random = new Random();
 
@@ -37,36 +37,36 @@ namespace Hydra
 
         internal string name;
 
-        internal Node parent;
+        internal SKNode parent;
 
-        internal List<Node> children;
+        internal List<SKNode> children;
 
-        internal PhysicsBody physicsBody;
+        internal SKPhysicsBody physicsBody;
 
-        internal Dictionary<string, Action> actions;
+        internal Dictionary<string, SKAction> actions;
 
         internal float alpha = 1.0f;
 
-        public Node()
+        public SKNode()
         {
             name = "";
-            children = new List<Node>();
-            actions = new Dictionary<string, Action>();
+            children = new List<SKNode>();
+            actions = new Dictionary<string, SKAction>();
         }
 
-        internal void run(Action action, string key)
+        internal void run(SKAction action, string key)
         {
-            Action copy = action.copy();
+            SKAction copy = action.copy();
             copy.runOnNode(this);
             actions.Add(key, copy);
         }
 
-        internal void run(Action action)
+        internal void run(SKAction action)
         {
-            run(action, $"{Scene.currentTime}{random.NextDouble()}");
+            run(action, $"{SKScene.currentTime}{random.NextDouble()}");
         }
 
-        internal void run(Action action, string key, Func<object> completionBlock)
+        internal void run(SKAction action, string key, Func<object> completionBlock)
         {
             run(action, key);
         }
@@ -76,7 +76,7 @@ namespace Hydra
             return actions.Count > 0;
         }
 
-        internal Action actionForKey(string key)
+        internal SKAction actionForKey(string key)
         {
             return actions[key];
         }
@@ -93,7 +93,7 @@ namespace Hydra
 
         internal void evaluateActions(float dt)
         {
-            foreach (KeyValuePair<string, Action> keyValuePair in actions)
+            foreach (KeyValuePair<string, SKAction> keyValuePair in actions)
             {
                 keyValuePair.Value.evaluateWithNode(this, dt);
             }
@@ -104,21 +104,21 @@ namespace Hydra
             }
         }
 
-        internal void addChild(Node node)
+        internal void addChild(SKNode node)
         {
             children.Add(node);
             node.parent = this;
         }
 
-        internal void insertChild(Node node, int index)
+        internal void insertChild(SKNode node, int index)
         {
             children.Insert(index, node);
             node.parent = this;
         }
 
-        internal void removeChildren(IEnumerable<Node> nodes)
+        internal void removeChildren(IEnumerable<SKNode> nodes)
         {
-            foreach (Node node in nodes)
+            foreach (SKNode node in nodes)
             {
                 if (node.parent == this)
                 {
@@ -145,19 +145,19 @@ namespace Hydra
 
             if (physicsBody != null)
             {
-                Scene.current.physicsWorld.RemoveBody(physicsBody);
+                SKScene.current.physicsWorld.RemoveBody(physicsBody);
             }
         }
 
-        internal void moveToParent(Node node)
+        internal void moveToParent(SKNode node)
         {
             removeFromParent();
             node.addChild(this);
         }
 
-        internal Node childNodeWithName(string name, bool recursive = true)
+        internal SKNode childNodeWithName(string name, bool recursive = true)
         {
-            foreach (Node node in children)
+            foreach (SKNode node in children)
             {
                 if (node.name == name)
                 {
@@ -166,7 +166,7 @@ namespace Hydra
 
                 if (recursive)
                 {
-                    Node childNode = node.childNodeWithName(name, recursive);
+                    SKNode childNode = node.childNodeWithName(name, recursive);
 
                     if (childNode != null)
                     {
@@ -178,9 +178,9 @@ namespace Hydra
             return null;
         }
 
-        internal void enumerateChildNodesWithName(string name, Action<Node> action, bool recursive = true)
+        internal void enumerateChildNodesWithName(string name, Action<SKNode> action, bool recursive = true)
         {
-            foreach (Node node in children)
+            foreach (SKNode node in children)
             {
                 if (node.name == name)
                 {
@@ -198,7 +198,7 @@ namespace Hydra
         {
             if (physicsBody != null)
             {
-                position = ConvertUnits.ToDisplayUnits(physicsBody.Position) - parent.positionInNode(Scene.current.gameWorld);
+                position = ConvertUnits.ToDisplayUnits(physicsBody.Position) - parent.positionInNode(SKScene.current.gameWorld);
                 zRotation = physicsBody.Rotation;
             }
         }
@@ -217,13 +217,13 @@ namespace Hydra
 
         protected void drawChildren(Vector2 position, float alpha)
         {
-            foreach (Node node in children)
+            foreach (SKNode node in children)
             {
                 node.draw(position + this.position, alpha * this.alpha);
             }
         }
 
-        internal Vector2 positionInNode(Node node)
+        internal Vector2 positionInNode(SKNode node)
         {
             return drawPosition(Vector2.Zero) - node.drawPosition(Vector2.Zero);
         }

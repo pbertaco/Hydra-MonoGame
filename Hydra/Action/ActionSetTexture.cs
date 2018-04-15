@@ -6,14 +6,13 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionSetTexture : Action
+    public class ActionSetTexture : SKAction
     {
         Texture2D texture2D;
         bool resize;
@@ -24,21 +23,21 @@ namespace Hydra
             this.resize = resize;
         }
 
-		internal override Action copy()
+		internal override SKAction copy()
 		{
             return new ActionSetTexture(texture2D, resize);
 		}
 
-		internal override void runOnNode(Node node)
+		internal override void runOnNode(SKNode node)
 		{
             if (resize)
             {
-                SpriteNode spriteNode = (SpriteNode)node;
+                SKSpriteNode spriteNode = (SKSpriteNode)node;
                 //spriteNode.size = new Vector2(texture2D.Width, texture2D.Height);
             }
         }
 
-		internal override void evaluateWithNode(Node node, float dt)
+		internal override void evaluateWithNode(SKNode node, float dt)
         {
             if (elapsed + dt > duration)
             {
@@ -47,7 +46,7 @@ namespace Hydra
 
             elapsed += dt;
 
-            SpriteNode spriteNode = (SpriteNode)node;
+            SKSpriteNode spriteNode = (SKSpriteNode)node;
             spriteNode.texture2D = texture2D;
         }
 	}

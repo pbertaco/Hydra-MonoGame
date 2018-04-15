@@ -11,9 +11,9 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class Scene : Node
+    public class SKScene : SKNode
     {
-        internal static Scene current;
+        internal static SKScene current;
         internal static Color backgroundColor = new Color(38, 38, 38);
         internal static Vector2 translate;
         internal static Vector2 currentSize;
@@ -24,12 +24,12 @@ namespace Hydra
         internal List<Control> controlList = new List<Control>();
         internal List<Label> labelList = new List<Label>();
         internal List<Button> buttonList = new List<Button>();
-        internal List<EmitterNode> emitterNodeList = new List<EmitterNode>();
+        internal List<SKEmitterNode> emitterNodeList = new List<SKEmitterNode>();
 
         internal CameraNode camera;
 
         internal PhysicsWorld physicsWorld;
-        internal Node gameWorld;
+        internal SKNode gameWorld;
 
         internal static float currentTime;
         internal static float elapsedTime;
@@ -37,7 +37,7 @@ namespace Hydra
         internal virtual void load()
         {
             physicsWorld = new PhysicsWorld();
-            gameWorld = new Node();
+            gameWorld = new SKNode();
 
             Control control = new Control("null", defaultSize.X / 2, defaultSize.Y / 2)
             {
@@ -110,7 +110,7 @@ namespace Hydra
 
         }
 
-        internal void presentScene(Scene scene)
+        internal void presentScene(SKScene scene)
         {
             contentManager.Unload();
             scene.contentManager = contentManager;

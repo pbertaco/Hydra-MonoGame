@@ -6,21 +6,20 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionRepeat : Action
+    public class ActionRepeat : SKAction
     {
-        Action action;
+        SKAction action;
         int count;
 
         int executionCount;
 
-        public ActionRepeat(Action action, int count)
+        public ActionRepeat(SKAction action, int count)
         {
             this.action = action;
             this.count = count;
@@ -28,17 +27,17 @@ namespace Hydra
             duration = action.duration * count;
         }
 
-        internal override Action copy()
+        internal override SKAction copy()
         {
             return new ActionRepeat(action, count);
         }
 
-        internal override void runOnNode(Node node)
+        internal override void runOnNode(SKNode node)
         {
             action.runOnNode(node);
         }
 
-        internal override void evaluateWithNode(Node node, float dt)
+        internal override void evaluateWithNode(SKNode node, float dt)
         {
             elapsed += dt;
 

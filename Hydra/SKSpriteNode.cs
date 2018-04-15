@@ -10,7 +10,7 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class SpriteNode : Node
+    public class SKSpriteNode : SKNode
     {
         internal Texture2D texture2D;
 
@@ -80,12 +80,12 @@ namespace Hydra
 
         internal BlendState blendState = BlendState.AlphaBlend;
 
-        public SpriteNode(Texture2D texture, Vector2 size)
+        public SKSpriteNode(Texture2D texture, Vector2 size)
         {
             load(texture, Color.White, size);
         }
 
-        public SpriteNode(Texture2D texture, Color color, Vector2 size)
+        public SKSpriteNode(Texture2D texture, Color color, Vector2 size)
         {
             load(texture, color, size);
         }
@@ -104,9 +104,9 @@ namespace Hydra
             layerDepth = 0.0f;
         }
 
-        public SpriteNode(string assetName)
+        public SKSpriteNode(string assetName)
         {
-            Texture2D texture = Scene.current.Texture2D(assetName);
+            Texture2D texture = SKScene.current.Texture2D(assetName);
 
             load(texture, Color.White, new Vector2(texture.Width, texture.Height));
         }

@@ -33,9 +33,9 @@ namespace Hydra
             delta = lastPosition - position;
         }
 
-        internal Vector2 locationIn(Node node)
+        internal Vector2 locationIn(SKNode node)
         {
-            return position - node.positionInNode(Scene.current);
+            return position - node.positionInNode(SKScene.current);
         }
     }
 }

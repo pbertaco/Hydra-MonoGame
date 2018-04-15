@@ -73,7 +73,7 @@ namespace Hydra
 #endif
             graphicsDeviceManager.ApplyChanges();
 
-            Scene.current = new GameScene();
+            SKScene.current = new GameScene();
 
             updateSize();
 
@@ -91,7 +91,7 @@ namespace Hydra
 
         void updateSize()
         {
-            Vector2 defaultSize = Scene.defaultSize;
+            Vector2 defaultSize = SKScene.defaultSize;
 
             Vector2 currentSize = Vector2.Zero;
 
@@ -114,15 +114,15 @@ namespace Hydra
             currentSize.Y = graphicsDeviceManager.PreferredBackBufferHeight / scale;
 #endif
 
-            Scene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
-            Scene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
+            SKScene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
+            SKScene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
 
             transformMatrix = Matrix.CreateScale(scale);
-            Scene.currentSize = currentSize;
+            SKScene.currentSize = currentSize;
 
-            if (Scene.current != null)
+            if (SKScene.current != null)
             {
-                Scene.current.updateSize();
+                SKScene.current.updateSize();
             }
         }
 
@@ -135,8 +135,8 @@ namespace Hydra
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Scene.current.contentManager = Content;
-            Scene.current.load();
+            SKScene.current.contentManager = Content;
+            SKScene.current.load();
         }
 
         /// <summary>
@@ -225,17 +225,17 @@ namespace Hydra
             lastMouseState = mouseState;
 #endif
 
-            Scene.currentTime = (float)gameTime.TotalGameTime.TotalSeconds;
-            Scene.elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Scene.current.update();
-            Scene.current.camera?.update();
+            SKScene.currentTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            SKScene.elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            SKScene.current.update();
+            SKScene.current.camera?.update();
 
             base.Update(gameTime);
         }
 
         void touchUp(Touch touch)
         {
-            foreach (Button button in Scene.current.buttonList)
+            foreach (Button button in SKScene.current.buttonList)
             {
                 if (button.state == ButtonState.Pressed)
                 {
@@ -258,10 +258,10 @@ namespace Hydra
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            graphicsDeviceManager.GraphicsDevice.Clear(Scene.backgroundColor);
+            graphicsDeviceManager.GraphicsDevice.Clear(SKScene.backgroundColor);
 
             spriteBatch.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix);
-            Scene.current.draw();
+            SKScene.current.draw();
             spriteBatch.End();
 
             base.Draw(gameTime);

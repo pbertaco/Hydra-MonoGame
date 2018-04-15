@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class LabelNode : Node
+    public class SKLabelNode : SKNode
     {
         SpriteFont spriteFont;
         string text;
@@ -18,14 +18,14 @@ namespace Hydra
         float layerDepth;
 
 
-        public LabelNode(string assetName, string text)
+        public SKLabelNode(string assetName, string text)
         {
             load(assetName, text);
         }
 
         void load(string assetName, string text)
         {
-            spriteFont = Scene.current.contentManager.Load<SpriteFont>("SpriteFont/" + assetName);
+            spriteFont = SKScene.current.contentManager.Load<SpriteFont>("SpriteFont/" + assetName);
             this.text = text;
             position = Vector2.Zero;
             color = Color.White;

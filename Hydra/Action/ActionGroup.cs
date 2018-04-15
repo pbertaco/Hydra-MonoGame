@@ -6,20 +6,19 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    class ActionGroup : Action
+    class ActionGroup : SKAction
     {
-        protected List<Action> actions;
+        protected List<SKAction> actions;
 
-        public ActionGroup(IEnumerable<Action> actions)
+        public ActionGroup(IEnumerable<SKAction> actions)
         {
-            this.actions = new List<Action>();
+            this.actions = new List<SKAction>();
             foreach (var action in actions)
             {
                 this.actions.Add(action.copy());
@@ -31,12 +30,12 @@ namespace Hydra
             }
         }
 
-        internal override Action copy()
+        internal override SKAction copy()
         {
             return new ActionGroup(actions);
         }
 
-        internal override void runOnNode(Node node)
+        internal override void runOnNode(SKNode node)
         {
             foreach (var action in actions)
             {
@@ -44,7 +43,7 @@ namespace Hydra
             }
         }
 
-        internal override void evaluateWithNode(Node node, float dt)
+        internal override void evaluateWithNode(SKNode node, float dt)
         {
             elapsed += dt;
 

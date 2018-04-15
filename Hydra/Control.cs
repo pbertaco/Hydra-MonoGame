@@ -9,7 +9,7 @@ namespace Hydra
     enum HorizontalAlignment { left, center, right }
     enum VerticalAlignment { top, center, bottom }
 
-    public class Control : SpriteNode
+    public class Control : SKSpriteNode
     {
         Vector2 sketchPosition;
 
@@ -22,14 +22,14 @@ namespace Hydra
 
             sketchPosition = new Vector2(x, y);
             resetPosition();
-            Scene.current.controlList.Add(this);
+            SKScene.current.controlList.Add(this);
         }
 
         internal static Vector2 resetPosition(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
             return new Vector2(
-                sketchPosition.X + (Scene.translate.X * (float)horizontalAlignment),
-                sketchPosition.Y + (Scene.translate.Y * (float)verticalAlignment)
+                sketchPosition.X + (SKScene.translate.X * (float)horizontalAlignment),
+                sketchPosition.Y + (SKScene.translate.Y * (float)verticalAlignment)
                 );
         }
 

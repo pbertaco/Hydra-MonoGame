@@ -19,7 +19,7 @@ namespace Hydra
         {
             state = ButtonState.Released;
             bounds = texture2D.Bounds;
-            Scene.current.buttonList.Add(this);
+            SKScene.current.buttonList.Add(this);
         }
 
         internal void touchDown()

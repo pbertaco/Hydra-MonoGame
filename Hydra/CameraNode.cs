@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hydra
 {
-    class CameraNode : Node
+    class CameraNode : SKNode
     {
         internal void update()
         {

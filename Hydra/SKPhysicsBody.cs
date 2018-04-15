@@ -11,9 +11,9 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    class PhysicsBody : Body
+    class SKPhysicsBody : Body
     {
-        public PhysicsBody(Vertices vertices, ShapeType shapeType = ShapeType.Polygon) : base(Scene.current.physicsWorld)
+        public SKPhysicsBody(Vertices vertices, ShapeType shapeType = ShapeType.Polygon) : base(SKScene.current.physicsWorld)
         {
             switch (shapeType)
             {
@@ -34,7 +34,7 @@ namespace Hydra
             load(vertices);
         }
 
-        public PhysicsBody(Vector2 size, ShapeType shapeType = ShapeType.Unknown, Vertices vertices = null) : base(Scene.current.physicsWorld)
+        public SKPhysicsBody(Vector2 size, ShapeType shapeType = ShapeType.Unknown, Vertices vertices = null) : base(SKScene.current.physicsWorld)
         {
             switch (shapeType)
             {
