@@ -30,7 +30,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new ActionResizeBy(size, duration);
+            return new ActionResizeBy(size, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void evaluateWithNode(SKNode node, float dt)
@@ -42,8 +45,12 @@ namespace Hydra
 
             elapsed += dt;
 
+            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+
             SKSpriteNode spriteNode = (SKSpriteNode)node;
-            spriteNode.size += speed * dt;
+            spriteNode.size += speed * (t1 - t0);
+
+            t0 = t1;
         }
     }
 }

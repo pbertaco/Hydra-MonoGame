@@ -20,7 +20,10 @@ namespace Hydra
 
 		internal override SKAction copy()
 		{
-            return new ActionResizeTo(size, duration);
+            return new ActionResizeTo(size, duration)
+            {
+                timingFunction = this.timingFunction
+            };
 		}
 
 		internal override void runOnNode(SKNode node)

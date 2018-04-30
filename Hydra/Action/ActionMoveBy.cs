@@ -30,7 +30,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new ActionMoveBy(delta, duration);
+            return new ActionMoveBy(delta, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void evaluateWithNode(SKNode node, float dt)
@@ -41,7 +44,12 @@ namespace Hydra
             }
 
             elapsed += dt;
-            node.position += speed * dt;
+
+            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+
+            node.position += speed * (t1 - t0);
+
+            t0 = t1;
         }
     }
 }

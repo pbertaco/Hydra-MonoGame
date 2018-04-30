@@ -20,7 +20,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new ActionRotateTo(radians, duration);
+            return new ActionRotateTo(radians, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void runOnNode(SKNode node)

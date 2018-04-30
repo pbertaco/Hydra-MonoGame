@@ -20,7 +20,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new FadeAlphaTo(factor, duration);
+            return new FadeAlphaTo(factor, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void runOnNode(SKNode node)

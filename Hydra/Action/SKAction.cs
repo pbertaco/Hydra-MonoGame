@@ -12,10 +12,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
+    using SKActionTimingFunction = Func<float, float, float, float, float>;
+
     public class SKAction
     {
-        
-
         /// <summary>
         /// The duration required to complete an action, in seconds.
         /// </summary>
@@ -24,9 +24,11 @@ namespace Hydra
         /// <summary>
         /// The timing function.
         /// </summary>
-        Func<float, float, float, float, float> timingFunction = Easing.Linear;
+        internal SKActionTimingFunction timingFunction = Easing.Linear;
 
         internal float elapsed;
+
+        internal float t0;
 
         /// <summary>
         /// Creates an action that moves a node relative to its current position

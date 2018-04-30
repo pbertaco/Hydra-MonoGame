@@ -30,7 +30,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new FadeAlphaBy(factor, duration);
+            return new FadeAlphaBy(factor, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void evaluateWithNode(SKNode node, float dt)
@@ -42,7 +45,11 @@ namespace Hydra
 
             elapsed += dt;
 
-            node.alpha += speed * dt;
+            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+
+            node.alpha += speed * (t1 - t0);
+
+            t0 = t1;
         }
     }
 }

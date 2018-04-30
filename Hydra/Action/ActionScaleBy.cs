@@ -30,7 +30,10 @@ namespace Hydra
 
         internal override SKAction copy()
         {
-            return new ActionScaleBy(scale, duration);
+            return new ActionScaleBy(scale, duration)
+            {
+                timingFunction = this.timingFunction
+            };
         }
 
         internal override void evaluateWithNode(SKNode node, float dt)
@@ -42,7 +45,11 @@ namespace Hydra
 
             elapsed += dt;
 
-            node.scale += speed * dt;
+            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+
+            node.scale += speed * (t1 - t0);
+
+            t0 = t1;
         }
     }
 }
