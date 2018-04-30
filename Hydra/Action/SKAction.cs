@@ -24,7 +24,7 @@ namespace Hydra
         /// <summary>
         /// The timing function.
         /// </summary>
-        Func<float, float, float, float, float> timingFunction = Easing.linear;
+        Func<float, float, float, float, float> timingFunction = Easing.Linear;
 
         internal float elapsed;
 
