@@ -167,5 +167,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)FarseerPhysics\Factories\FixtureFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FarseerPhysics\Factories\JointFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FarseerPhysics\Factories\LinkFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hydra\Easing.cs" />
   </ItemGroup>
 </Project>

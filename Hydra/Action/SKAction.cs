@@ -14,10 +14,17 @@ namespace Hydra
 {
     public class SKAction
     {
+        
+
         /// <summary>
         /// The duration required to complete an action, in seconds.
         /// </summary>
         internal float duration;
+
+        /// <summary>
+        /// The timing function.
+        /// </summary>
+        Func<float, float, float, float, float> timingFunction = Easing.linear;
 
         internal float elapsed;
 
