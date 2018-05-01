@@ -45,7 +45,7 @@ namespace Hydra
 
             elapsed += dt;
 
-            float t1 = timingFunction(elapsed, 0, 1, 1);
+            float t1 = timingFunction(elapsed / duration, 0, 1, 1) * duration;
 
             node.zRotation += speed * (t1 - t0);
 
