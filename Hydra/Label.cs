@@ -6,20 +6,31 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public enum SpriteFontName { SpriteFont, KenPixel16, KenPixel18, KenPixel24, KenPixel32 }
-
     public class Label : SKLabelNode
     {
+        internal static Color defaultColor = GameColors.fontBlack;
+        internal static FontName defaultFontName = FontName.SpriteFont;
+        internal static FontSize defaultFontSize = FontSize.size32;
+
         Vector2 sketchPosition;
 
         HorizontalAlignment horizontalAlignment = HorizontalAlignment.left;
         VerticalAlignment verticalAlignment = VerticalAlignment.top;
 
-        public Label(string text, float x = 0, float y = 0, SpriteFontName spriteFontName = SpriteFontName.SpriteFont) : base(spriteFontName.ToString(), text)
+        public Label(string text, float x = 0, float y = 0,
+                     HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
+                     VerticalAlignment verticalAlignment = VerticalAlignment.top,
+                     FontName fontName = FontName.Default,
+                     FontSize fontSize = FontSize.Default) : base((fontName == FontName.Default ?
+                                                                   defaultFontName :
+                                                                   fontName).ToString() + 
+                                                                  (fontSize == FontSize.Default ?
+                                                                   defaultFontSize :
+                                                                   fontSize).GetHashCode(), text)
         {
             sketchPosition = new Vector2(x, y);
-            resetPosition();
-            SKScene.current.labelList.Add(this);
+            setAlignment(horizontalAlignment, verticalAlignment);
+        SKScene.current.labelList.Add(this);
         }
 
         internal void resetPosition()
