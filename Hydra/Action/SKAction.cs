@@ -30,6 +30,11 @@ namespace Hydra
 
         internal float t0;
 
+        internal SKAction with(SKActionTimingFunction timingFunction) {
+            this.timingFunction = timingFunction;
+            return this;
+        }
+
         /// <summary>
         /// Creates an action that moves a node relative to its current position
         /// </summary>

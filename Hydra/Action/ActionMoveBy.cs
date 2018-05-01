@@ -45,7 +45,7 @@ namespace Hydra
 
             elapsed += dt;
 
-            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+            float t1 = timingFunction(elapsed, 0, 1, 1);
 
             node.position += speed * (t1 - t0);
 

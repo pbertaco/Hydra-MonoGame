@@ -45,7 +45,7 @@ namespace Hydra
 
             elapsed += dt;
 
-            float t1 = timingFunction(elapsed / duration, 0, 1, 1);
+            float t1 = timingFunction(elapsed, 0, 1, 1);
 
             SKSpriteNode spriteNode = (SKSpriteNode)node;
             spriteNode.size += speed * (t1 - t0);

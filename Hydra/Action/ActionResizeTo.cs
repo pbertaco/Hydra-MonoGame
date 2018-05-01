@@ -27,7 +27,7 @@ namespace Hydra
 		}
 
 		internal override void runOnNode(SKNode node)
-		{
+        {
             SKSpriteNode spriteNode = (SKSpriteNode)node;
             speed = (size - spriteNode.size) / duration;
 		}
