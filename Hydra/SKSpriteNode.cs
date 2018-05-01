@@ -83,6 +83,11 @@ namespace Hydra
 
         internal BlendState blendState = BlendState.AlphaBlend;
 
+        public SKSpriteNode(Texture2D texture)
+        {
+            load(texture, Color.White, texture.Bounds.Size.ToVector2());
+        }
+
         public SKSpriteNode(Texture2D texture, Vector2 size)
         {
             load(texture, Color.White, size);

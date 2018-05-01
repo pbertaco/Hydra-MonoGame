@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    enum HorizontalAlignment { left, center, right }
-    enum VerticalAlignment { top, center, bottom }
+    public enum HorizontalAlignment { left, center, right }
+    public enum VerticalAlignment { top, center, bottom }
 
     public class Control : SKSpriteNode
     {
@@ -23,6 +23,13 @@ namespace Hydra
             sketchPosition = new Vector2(x, y);
             resetPosition();
             SKScene.current.controlList.Add(this);
+        }
+
+        public Control(string assetName, float x = 0, float y = 0, 
+                       HorizontalAlignment horizontalAlignment = HorizontalAlignment.left, 
+                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : this(assetName, x, y)
+        {
+            setAlignment(horizontalAlignment, verticalAlignment);
         }
 
         internal static Vector2 resetPosition(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
