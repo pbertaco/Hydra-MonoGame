@@ -67,7 +67,7 @@ namespace Hydra
             }
         }
 
-        Vector2 _scale;
+		Vector2 _scale;
         internal new Vector2 scale
         {
             get
@@ -143,6 +143,25 @@ namespace Hydra
             Game1.spriteBatch.Draw(texture2D, position + this.position, sourceRectangle, drawColor * this.alpha * alpha, zRotation, origin, drawScale, effects, layerDepth);
 
             drawChildren(position, alpha);
+        }
+
+        internal void setScaleToFit(float width, float height)
+        {
+            scale = Vector2.One;
+            float xScale = width / size.X;
+            float yScale = height / size.Y;
+
+            scale = Vector2.One * Math.Min(xScale, yScale);
+
+            if (scale.X > 1.0f)
+            {
+                scale = Vector2.One;
+            }
+        }
+
+        internal void setScaleToFit(Vector2 size)
+        {
+            setScaleToFit(size.X, size.Y);
         }
     }
 }
