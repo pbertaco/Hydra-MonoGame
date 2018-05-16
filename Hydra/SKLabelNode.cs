@@ -22,28 +22,29 @@ namespace Hydra
             load(assetName, text);
         }
 
-        void load(string assetName, string text)
+        void load(string assetName, string someText)
         {
             spriteFont = SKScene.current.contentManager.Load<SpriteFont>("SpriteFont/" + assetName);
-            this.text = text;
+			text = someText;
             position = Vector2.Zero;
             color = Color.White;
             zRotation = 0;
-            Vector2 size = spriteFont.MeasureString(text);
+            Vector2 size = spriteFont.MeasureString(someText);
             origin = new Vector2(size.X * 0.5f, size.Y * 0.5f);
             scale = Vector2.One;
             effects = SpriteEffects.None;
             layerDepth = 0;
         }
 
-        internal override void draw(Vector2 position, float alpha)
+        internal override void draw(Vector2 parentPosition, float parentAlpha)
         {
-            if (isHidden || alpha <= 0.0f)
+			if (isHidden || alpha <= 0.0f)
             {
                 return;
             }
-            Game1.spriteBatch.DrawString(spriteFont, text, position + this.position, color * this.alpha * alpha, zRotation, origin, scale, effects, layerDepth);
-            base.draw(position, alpha);
+
+			Game1.spriteBatch.DrawString(spriteFont, text, parentPosition + position, color * parentAlpha * alpha, zRotation, origin, scale, effects, layerDepth);
+            base.draw(parentPosition, parentAlpha);
         }
     }
 }

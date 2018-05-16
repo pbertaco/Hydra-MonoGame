@@ -8,32 +8,33 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class SKNode
-    {
-        internal static Random random = new Random();
+	public class SKNode
+	{
+		internal static Random random = new Random();
 
-        internal Vector2 position;
+		internal Vector2 position;
 
-        float _zRotation;
-        internal float zRotation
-        {
-            get
-            {
-                return _zRotation;
-            }
-            set
-            {
-                _zRotation = value;
-                if (physicsBody != null)
-                {
-                    physicsBody.Rotation = value;
-                }
-            }
-        }
+		float _zRotation;
+		internal float zRotation
+		{
+			get
+			{
+				return _zRotation;
+			}
+			set
+			{
+				_zRotation = value;
+				if (physicsBody != null)
+				{
+					physicsBody.Rotation = value;
+				}
+			}
+		}
 
-        internal Vector2 scale;
+		internal Vector2 _scale;
+		internal virtual Vector2 scale { get => _scale; set => _scale = value; }
 
-        internal bool isHidden;
+		internal bool isHidden;
 
         internal object userData;
 
@@ -54,6 +55,7 @@ namespace Hydra
             name = "";
             children = new List<SKNode>();
             actions = new Dictionary<string, SKAction>();
+			_scale = Vector2.One;
         }
 
         internal void run(SKAction action, string key)
@@ -165,18 +167,18 @@ namespace Hydra
             node.addChild(this);
         }
 
-        internal SKNode childNodeWithName(string name, bool recursive = true)
+        internal SKNode childNodeWithName(string someName, bool recursive = true)
         {
             foreach (SKNode node in children)
             {
-                if (node.name == name)
+                if (node.name == someName)
                 {
                     return node;
                 }
 
                 if (recursive)
                 {
-                    SKNode childNode = node.childNodeWithName(name, recursive);
+                    SKNode childNode = node.childNodeWithName(someName, recursive);
 
                     if (childNode != null)
                     {
@@ -188,18 +190,18 @@ namespace Hydra
             return null;
         }
 
-        internal void enumerateChildNodesWithName(string name, Action<SKNode> action, bool recursive = true)
+        internal void enumerateChildNodesWithName(string someName, Action<SKNode> action, bool recursive = true)
         {
             foreach (SKNode node in children)
             {
-                if (node.name == name)
+                if (node.name == someName)
                 {
                     action(node);
                 }
 
                 if (recursive)
                 {
-                    node.enumerateChildNodesWithName(name, action, recursive);
+                    node.enumerateChildNodesWithName(someName, action, recursive);
                 }
             }
         }
@@ -213,23 +215,23 @@ namespace Hydra
             }
         }
 
-        internal virtual void draw(Vector2 position, float alpha)
+        internal virtual void draw(Vector2 parentPosition, float parentAlpha)
         {
-            if (isHidden || alpha <= 0.0f)
+			if (isHidden || alpha <= 0.0f)
             {
                 return;
             }
 
             beforeDraw();
 
-            drawChildren(position, alpha);
+            drawChildren(parentPosition, parentAlpha);
         }
 
-        protected void drawChildren(Vector2 position, float alpha)
+        protected void drawChildren(Vector2 parentPosition, float parentAlpha)
         {
             foreach (SKNode node in children)
             {
-                node.draw(position + this.position, alpha * this.alpha);
+                node.draw(parentPosition + position, parentAlpha * alpha);
             }
         }
 
@@ -238,14 +240,14 @@ namespace Hydra
             return drawPosition(Vector2.Zero) - node.drawPosition(Vector2.Zero);
         }
 
-        Vector2 drawPosition(Vector2 position)
+        Vector2 drawPosition(Vector2 parentPosition)
         {
             if (parent != null)
             {
-                return parent.drawPosition(position + this.position);
+                return parent.drawPosition(parentPosition + position);
             }
 
-            return position + this.position;
+            return parentPosition + position;
         }
     }
 }

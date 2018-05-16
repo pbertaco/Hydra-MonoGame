@@ -140,9 +140,9 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 position, float alpha)
+        internal override void draw(Vector2 parentPosition, float parentAlpha)
         {
-            if (isHidden || alpha <= 0.0f)
+            if (isHidden || parentAlpha <= 0.0f)
             {
                 return;
             }
@@ -151,10 +151,10 @@ namespace Hydra
 
             foreach (var particle in particles)
             {
-                Game1.spriteBatch.Draw(texture2D, position + particle.position, sourceRectangle, color * particle.alpha * alpha, zRotation, origin, scale * particle.scale, effects, layerDepth);
+                Game1.spriteBatch.Draw(texture2D, parentPosition + particle.position, sourceRectangle, color * particle.alpha * parentAlpha, zRotation, origin, scale * particle.scale, effects, layerDepth);
             }
 
-            drawChildren(position, alpha);
+            drawChildren(parentPosition, parentAlpha);
         }
     }
 }

@@ -57,27 +57,26 @@ namespace Hydra
         {
             get
             {
-                return _size * _scale;
+                return _size * base.scale;
             }
             set
             {
-                _size = value / scale;
+                _size = value / base.scale;
                 sizeScale = new Vector2(_size.X / texture2D.Width, _size.Y / texture2D.Height);
-                drawScale = sizeScale * scale;
+				drawScale = sizeScale * base.scale;
             }
         }
 
-		Vector2 _scale;
-        internal new Vector2 scale
+		internal override Vector2 scale
         {
             get
             {
-                return _scale;
+                return base.scale;
             }
             set
             {
-                _scale = value;
-                drawScale = sizeScale * _scale;
+                base.scale = value;
+                drawScale = sizeScale * base.scale;
             }
         }
 
@@ -131,18 +130,18 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 position, float alpha)
+        internal override void draw(Vector2 parentPosition, float parentAlpha)
         {
-            if (isHidden || alpha <= 0.0f)
+			if (isHidden || alpha <= 0.0f)
             {
                 return;
             }
 
             beforeDraw();
 
-            Game1.spriteBatch.Draw(texture2D, position + this.position, sourceRectangle, drawColor * this.alpha * alpha, zRotation, origin, drawScale, effects, layerDepth);
+            Game1.spriteBatch.Draw(texture2D, parentPosition + position, sourceRectangle, drawColor * alpha * parentAlpha, zRotation, origin, drawScale, effects, layerDepth);
 
-            drawChildren(position, alpha);
+            drawChildren(parentPosition, parentAlpha);
         }
 
         internal void setScaleToFit(float width, float height)
