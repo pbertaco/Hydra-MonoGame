@@ -31,7 +31,7 @@ namespace Hydra
 			}
 		}
 
-		internal Vector2 _scale;
+		Vector2 _scale;
 		internal virtual Vector2 scale { get => _scale; set => _scale = value; }
 
 		internal bool isHidden;
@@ -215,7 +215,7 @@ namespace Hydra
             }
         }
 
-        internal virtual void draw(Vector2 parentPosition, float parentAlpha)
+		internal virtual void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
 			if (isHidden || alpha <= 0.0f)
             {
@@ -224,14 +224,14 @@ namespace Hydra
 
             beforeDraw();
 
-            drawChildren(parentPosition, parentAlpha);
+			drawChildren(currentPosition, currentAlpha, currentScale);
         }
 
-        protected void drawChildren(Vector2 parentPosition, float parentAlpha)
+		protected void drawChildren(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
             foreach (SKNode node in children)
             {
-                node.draw(parentPosition + position, parentAlpha * alpha);
+				node.draw(currentPosition + position, currentAlpha * alpha, currentScale * scale);
             }
         }
 
@@ -240,14 +240,14 @@ namespace Hydra
             return drawPosition(Vector2.Zero) - node.drawPosition(Vector2.Zero);
         }
 
-        Vector2 drawPosition(Vector2 parentPosition)
+        Vector2 drawPosition(Vector2 currentPosition)
         {
             if (parent != null)
             {
-                return parent.drawPosition(parentPosition + position);
+                return parent.drawPosition(currentPosition + position);
             }
 
-            return parentPosition + position;
+            return currentPosition + position;
         }
     }
 }

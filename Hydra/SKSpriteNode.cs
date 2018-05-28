@@ -130,7 +130,7 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 parentPosition, float parentAlpha)
+		internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
 			if (isHidden || alpha <= 0.0f)
             {
@@ -139,9 +139,9 @@ namespace Hydra
 
             beforeDraw();
 
-            Game1.spriteBatch.Draw(texture2D, parentPosition + position, sourceRectangle, drawColor * alpha * parentAlpha, zRotation, origin, drawScale, effects, layerDepth);
+			Game1.spriteBatch.Draw(texture2D, currentPosition + position, sourceRectangle, drawColor * alpha * currentAlpha, zRotation, origin, currentScale * drawScale, effects, layerDepth);
 
-            drawChildren(parentPosition, parentAlpha);
+			drawChildren(currentPosition, currentAlpha, currentScale);
         }
 
         internal void setScaleToFit(float width, float height)

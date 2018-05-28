@@ -149,7 +149,7 @@ namespace Hydra
                 emitterNode.update(currentTime, elapsedTime);
             }
 
-            base.draw(Vector2.Zero, 1.0f);
+			base.draw(Vector2.Zero, 1.0f, Vector2.One);
         }
     }
 }
