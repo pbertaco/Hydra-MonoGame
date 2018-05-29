@@ -38,14 +38,27 @@ namespace Hydra
 
 		internal void touchDown()
         {
-            scale = new Vector2(0.95f, 0.95f);
-            position = new Vector2(position.X + (bounds.Width / 2) * 0.05f, position.Y + (bounds.Height / 2) * 0.05f);
+            resetPosition();
+            scale = Vector2.One;
+
+            float duration = 0.125f;
+            float x = position.X + (size.X / 2) * 0.05f;
+            float y = position.Y + (size.Y / 2) * 0.05f;
+
+            run(SKAction.group(new[] {
+                SKAction.scaleTo(0.95f, duration),
+                SKAction.moveTo(new Vector2(x, y), duration)
+            }), "Button.touchDown");
         }
 
         internal void touchUp()
         {
-            scale = new Vector2(1, 1);
-            resetPosition();
+            float duration = 0.125f;
+
+            run(SKAction.group(new[] {
+                SKAction.scaleTo(1.0f, duration),
+                SKAction.moveTo(positionWith(sketchPosition), duration)
+            }), "Button.touchUp");
         }
 
         internal void touchUpInside()

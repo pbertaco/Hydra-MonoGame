@@ -35,7 +35,7 @@ namespace Hydra
 
         internal void resetPosition()
         {
-            position = Control.resetPosition(sketchPosition, horizontalAlignment, verticalAlignment);
+            position = Control.positionWith(sketchPosition, horizontalAlignment, verticalAlignment);
         }
 
         internal void setAlignment(HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)

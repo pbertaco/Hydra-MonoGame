@@ -231,7 +231,7 @@ namespace Hydra
         {
             foreach (SKNode node in children)
             {
-				node.draw(currentPosition + position, currentAlpha * alpha, currentScale * scale);
+                node.draw(currentPosition + position * currentScale, currentAlpha * alpha, currentScale * scale);
             }
         }
 

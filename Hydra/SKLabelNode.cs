@@ -43,7 +43,7 @@ namespace Hydra
                 return;
             }
 
-			Game1.spriteBatch.DrawString(spriteFont, text, currentPosition + position, color * currentAlpha * alpha, zRotation, origin, currentScale * scale, effects, layerDepth);
+            Game1.spriteBatch.DrawString(spriteFont, text, currentPosition + position * currentScale, color * currentAlpha * alpha, zRotation, origin, currentScale * scale, effects, layerDepth);
 			base.draw(currentPosition, currentAlpha, currentScale);
         }
     }

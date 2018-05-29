@@ -139,7 +139,7 @@ namespace Hydra
 
             beforeDraw();
 
-			Game1.spriteBatch.Draw(texture2D, currentPosition + position, sourceRectangle, drawColor * alpha * currentAlpha, zRotation, origin, currentScale * drawScale, effects, layerDepth);
+            Game1.spriteBatch.Draw(texture2D, currentPosition + position * currentScale, sourceRectangle, drawColor * alpha * currentAlpha, zRotation, origin, currentScale * drawScale, effects, layerDepth);
 
 			drawChildren(currentPosition, currentAlpha, currentScale);
         }
