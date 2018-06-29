@@ -58,6 +58,11 @@ namespace Hydra
 			_scale = Vector2.One;
         }
 
+        internal void run(SKAction action)
+        {
+            run(action, $"{SKScene.currentTime}{random.NextDouble()}");
+        }
+
         internal void run(SKAction action, string key)
         {
             SKAction copy = action.copy();
@@ -73,14 +78,9 @@ namespace Hydra
             }
         }
 
-        internal void run(SKAction action)
+        internal void run(SKAction action, Action completionBlock)
         {
             run(action, $"{SKScene.currentTime}{random.NextDouble()}");
-        }
-
-        internal void run(SKAction action, string key, Func<object> completionBlock)
-        {
-            run(action, key);
         }
 
         internal bool hasActions()
@@ -107,7 +107,12 @@ namespace Hydra
         {
             foreach (KeyValuePair<string, SKAction> keyValuePair in actions)
             {
-                keyValuePair.Value.evaluateWithNode(this, dt);
+                SKAction action = keyValuePair.Value;
+
+                if (action.elapsed <= action.duration)
+                {
+                    action.evaluateWithNode(this, dt);
+                }
             }
 
             for (int i = children.Count - 1; i >= 0; i--)

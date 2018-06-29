@@ -17,14 +17,9 @@ namespace Hydra
         protected Vector2 size;
         protected Vector2 speed;
 
-        public ActionResizeBy(Vector2 size, float duration)
+        public ActionResizeBy(Vector2 size, float duration) : base(duration)
         {
             this.size = size;
-            this.duration = duration;
-            if (this.duration <= 0)
-            {
-                this.duration = 0.001f;
-            }
             speed = size / duration;
         }
 

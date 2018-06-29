@@ -17,14 +17,9 @@ namespace Hydra
         protected Vector2 delta;
         protected Vector2 speed;
 
-        public ActionMoveBy(Vector2 delta, float duration)
+        public ActionMoveBy(Vector2 delta, float duration) : base(duration)
         {
             this.delta = delta;
-            this.duration = duration;
-            if (this.duration <= 0)
-            {
-                this.duration = 0.001f;
-            }
             speed = delta / duration;
         }
 

@@ -14,7 +14,7 @@ namespace Hydra
 {
     class Button : Control
     {
-        internal EventHandler touchUpEvent;
+        internal Action touchUpAction;
 
         Rectangle bounds;
 
@@ -63,7 +63,7 @@ namespace Hydra
 
         internal void touchUpInside()
         {
-            touchUpEvent.Invoke(this, EventArgs.Empty);
+            touchUpAction();
         }
 
         internal bool contains(Vector2 position)

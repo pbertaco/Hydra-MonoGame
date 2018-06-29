@@ -17,14 +17,9 @@ namespace Hydra
         protected float radians;
         protected float speed;
 
-        public ActionRotateBy(float radians, float duration)
+        public ActionRotateBy(float radians, float duration) : base(duration)
         {
             this.radians = radians;
-            this.duration = duration;
-            if (this.duration <= 0)
-            {
-                this.duration = 0.001f;
-            }
             speed = radians / duration;
         }
 

@@ -16,9 +16,8 @@ namespace Hydra
     {
         float durationRange;
 
-        public ActionWait(float duration, float durationRange)
+        public ActionWait(float duration, float durationRange) : base(duration)
         {
-            this.duration = duration;
             this.durationRange = durationRange;
         }
 

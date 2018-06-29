@@ -17,14 +17,9 @@ namespace Hydra
         protected Vector2 scale;
         protected Vector2 speed;
 
-        public ActionScaleBy(Vector2 scale, float duration)
+        public ActionScaleBy(Vector2 scale, float duration) : base(duration)
         {
             this.scale = scale;
-            this.duration = duration;
-            if (this.duration <= 0)
-            {
-                this.duration = 0.001f;
-            }
             speed = scale / duration;
         }
 

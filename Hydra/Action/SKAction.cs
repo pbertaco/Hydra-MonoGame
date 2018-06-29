@@ -30,7 +30,17 @@ namespace Hydra
 
         internal float t0;
 
-        internal SKAction with(SKActionTimingFunction timingFunction) {
+        public SKAction(float duration)
+        {
+            this.duration = duration;
+            if (this.duration <= 0)
+            {
+                this.duration = 0.001f;
+            }
+        }
+
+        internal SKAction with(SKActionTimingFunction timingFunction)
+        {
             this.timingFunction = timingFunction;
             return this;
         }
@@ -245,6 +255,10 @@ namespace Hydra
         internal static SKAction removeFromParent()
         {
             return new ActionRemoveFromParent();
+        }
+
+        internal static SKAction run(Action block) {
+
         }
 
 

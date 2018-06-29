@@ -17,14 +17,9 @@ namespace Hydra
         protected float factor;
         protected float speed;
 
-        public FadeAlphaBy(float factor, float duration)
+        public FadeAlphaBy(float factor, float duration) : base(duration)
         {
             this.factor = factor;
-            this.duration = duration;
-            if (this.duration <= 0)
-            {
-                this.duration = 0.001f;
-            }
             speed = factor / duration;
         }
 

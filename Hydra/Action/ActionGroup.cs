@@ -16,7 +16,7 @@ namespace Hydra
     {
         protected List<SKAction> actions;
 
-        public ActionGroup(IEnumerable<SKAction> actions)
+        public ActionGroup(IEnumerable<SKAction> actions) : base(0)
         {
             this.actions = new List<SKAction>();
             foreach (var action in actions)
