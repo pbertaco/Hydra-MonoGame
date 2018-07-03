@@ -24,11 +24,16 @@ namespace Hydra
 
             float randomDuration = (float)(SKNode.random.NextDouble() * durationRange);
             duration = this.durationBase - durationRange / 2 + randomDuration;
+
+            if (duration <= 0)
+            {
+                duration = 0.001f;
+            }
         }
 
         internal override SKAction copy()
         {
-            return new ActionWait(durationBase, durationRange);
+            return new ActionWait(duration, 0);
         }
 
         internal override void evaluateWithNode(SKNode node, float dt)

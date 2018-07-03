@@ -47,6 +47,7 @@ namespace Hydra
         internal SKPhysicsBody physicsBody;
 
         internal Dictionary<string, SKAction> actions;
+        internal List<String> actionsToRemove;
 
         internal float alpha = 1.0f;
 
@@ -55,6 +56,7 @@ namespace Hydra
             name = "";
             children = new List<SKNode>();
             actions = new Dictionary<string, SKAction>();
+            actionsToRemove = new List<string>();
 			_scale = Vector2.One;
         }
 
@@ -108,11 +110,21 @@ namespace Hydra
             foreach (KeyValuePair<string, SKAction> keyValuePair in actions)
             {
                 SKAction action = keyValuePair.Value;
+                action.evaluateWithNode(this, dt);
 
-                if (action.elapsed <= action.duration)
+                if (action.elapsed > action.duration)
                 {
-                    action.evaluateWithNode(this, dt);
+                    actionsToRemove.Add(keyValuePair.Key);
                 }
+            }
+
+            if (actionsToRemove.Count > 0)
+            {
+                foreach (string key in actionsToRemove)
+                {
+                    actions.Remove(key);
+                }
+                actionsToRemove.Clear();
             }
 
             for (int i = children.Count - 1; i >= 0; i--)
