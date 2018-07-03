@@ -17,7 +17,7 @@ namespace Hydra
         Texture2D texture2D;
         bool resize;
 
-        public ActionSetTexture(Texture2D texture2D, bool resize)
+        public ActionSetTexture(Texture2D texture2D, bool resize) : base(0)
         {
             this.texture2D = texture2D;
             this.resize = resize;

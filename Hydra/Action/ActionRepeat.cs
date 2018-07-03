@@ -19,7 +19,7 @@ namespace Hydra
 
         int executionCount;
 
-        public ActionRepeat(SKAction action, int count)
+        public ActionRepeat(SKAction action, int count) : base(0)
         {
             this.action = action;
             this.count = count;

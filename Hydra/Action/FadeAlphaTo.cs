@@ -14,6 +14,10 @@ namespace Hydra
 {
     public class FadeAlphaTo : FadeAlphaBy
     {
+        public FadeAlphaTo(float factor, float duration) : base(factor, duration)
+        {
+        }
+
         internal override SKAction copy()
         {
             return new FadeAlphaTo(factor, duration)

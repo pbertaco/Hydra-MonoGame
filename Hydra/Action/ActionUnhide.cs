@@ -14,6 +14,10 @@ namespace Hydra
 {
     public class ActionUnhide : SKAction
     {
+        public ActionUnhide() : base(0)
+        {
+        }
+
         internal override SKAction copy()
         {
             return new ActionUnhide();

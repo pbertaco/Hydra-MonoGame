@@ -14,6 +14,10 @@ namespace Hydra
 {
     public class ActionRemoveFromParent : SKAction
     {
+        public ActionRemoveFromParent() : base(0)
+        {
+        }
+
         internal override SKAction copy()
         {
             return new ActionRemoveFromParent();

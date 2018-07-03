@@ -20,7 +20,7 @@ namespace Hydra
         public FadeAlphaBy(float factor, float duration) : base(duration)
         {
             this.factor = factor;
-            speed = factor / duration;
+            speed = factor / this.duration;
         }
 
         internal override SKAction copy()

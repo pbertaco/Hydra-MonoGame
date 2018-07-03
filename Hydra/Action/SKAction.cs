@@ -32,10 +32,13 @@ namespace Hydra
 
         public SKAction(float duration)
         {
-            this.duration = duration;
-            if (this.duration <= 0)
+            if (duration <= 0)
             {
                 this.duration = 0.001f;
+            }
+            else
+            {
+                this.duration = duration;
             }
         }
 
@@ -257,9 +260,9 @@ namespace Hydra
             return new ActionRemoveFromParent();
         }
 
-        internal static SKAction run(Action block) {
+        //internal static SKAction run(Action block) {
 
-        }
+        //}
 
 
         internal virtual SKAction copy()
