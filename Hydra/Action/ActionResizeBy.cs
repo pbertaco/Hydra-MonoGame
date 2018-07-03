@@ -20,7 +20,7 @@ namespace Hydra
         public ActionResizeBy(Vector2 size, float duration) : base(duration)
         {
             this.size = size;
-            speed = size / duration;
+            speed = size / this.duration;
         }
 
         internal override SKAction copy()

@@ -20,7 +20,7 @@ namespace Hydra
         public ActionMoveBy(Vector2 delta, float duration) : base(duration)
         {
             this.delta = delta;
-            speed = delta / duration;
+            speed = delta / this.duration;
         }
 
         internal override SKAction copy()

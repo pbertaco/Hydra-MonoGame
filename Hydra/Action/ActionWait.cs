@@ -14,19 +14,24 @@ namespace Hydra
 {
     public class ActionWait : SKAction
     {
+        float durationBase;
         float durationRange;
 
-        public ActionWait(float duration, float durationRange) : base(duration)
+        public ActionWait(float durationBase, float durationRange) : base(durationBase)
         {
+            this.durationBase = durationBase;
             this.durationRange = durationRange;
+
+            float randomDuration = (float)(SKNode.random.NextDouble() * durationRange);
+            duration = this.durationBase - durationRange / 2 + randomDuration;
         }
 
-		internal override SKAction copy()
-		{
-            return new ActionWait(duration, durationRange);
-		}
+        internal override SKAction copy()
+        {
+            return new ActionWait(durationBase, durationRange);
+        }
 
-		internal override void evaluateWithNode(SKNode node, float dt)
+        internal override void evaluateWithNode(SKNode node, float dt)
         {
             if (elapsed + dt > duration)
             {

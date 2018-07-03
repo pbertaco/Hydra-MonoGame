@@ -20,7 +20,7 @@ namespace Hydra
         public ActionRotateBy(float radians, float duration) : base(duration)
         {
             this.radians = radians;
-            speed = radians / duration;
+            speed = radians / this.duration;
         }
 
         internal override SKAction copy()
