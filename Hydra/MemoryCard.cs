@@ -35,10 +35,7 @@ namespace Hydra
 
             transaction = realm.BeginWrite();
 
-            playerData = new PlayerData();
-            realm.Add(playerData);
-
-            saveGame();
+            playerData = insert<PlayerData>();
         }
 
         internal void saveGame(bool willTerminate = false)
@@ -83,6 +80,25 @@ namespace Hydra
             transaction.Commit();
             playerData = null;
             newGame();
+        }
+
+        internal T insert<T>() where T : RealmObject, new()
+        {
+            T t = new T();
+            realm.Add(t);
+            saveGame();
+            return t;
+        }
+
+        internal IEnumerable<T> select<T>() where T : RealmObject
+        {
+            return realm.All<T>().ToList();
+        }
+
+        internal void delete<T>(T obj) where T : RealmObject
+        {
+            realm.Remove(obj);
+            saveGame();
         }
     }
 }
