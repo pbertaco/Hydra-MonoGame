@@ -5,6 +5,8 @@ using System.Text;
 using System.Linq;
 
 using Realms;
+using CommandersWar.Game;
+using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
@@ -35,7 +37,7 @@ namespace Hydra
 
             transaction = realm.BeginWrite();
 
-            playerData = insert<PlayerData>();
+            playerData = this.newPlayerData();
         }
 
         internal void saveGame(bool willTerminate = false)
