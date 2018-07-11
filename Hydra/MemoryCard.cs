@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq;
 
 using Realms;
-using CommandersWar.Game;
+
 using Microsoft.Xna.Framework;
 
 namespace Hydra
