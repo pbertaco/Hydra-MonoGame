@@ -12,7 +12,23 @@ namespace Hydra
 {
     public class SKSpriteNode : SKNode
     {
-        internal Texture2D texture2D;
+        protected Vector2 origin;
+
+        Texture2D _texture2D;
+        internal Texture2D texture2D
+        {
+            get
+            {
+                return _texture2D;
+            }
+
+            set
+            {
+                _texture2D = value;
+                size = _size;
+                origin = new Vector2(_texture2D.Bounds.Width * 0.5f, _texture2D.Bounds.Height * 0.5f);
+            }
+        }
 
         Color drawColor;
 
@@ -45,7 +61,6 @@ namespace Hydra
         }
 
         protected Rectangle? sourceRectangle;
-        protected Vector2 origin;
         protected SpriteEffects effects;
         protected float layerDepth;
 
@@ -63,11 +78,11 @@ namespace Hydra
             {
                 _size = value / base.scale;
                 sizeScale = new Vector2(_size.X / texture2D.Width, _size.Y / texture2D.Height);
-				drawScale = sizeScale * base.scale;
+                drawScale = sizeScale * base.scale;
             }
         }
 
-		internal override Vector2 scale
+        internal override Vector2 scale
         {
             get
             {
@@ -97,6 +112,13 @@ namespace Hydra
             load(texture, color, size);
         }
 
+        public SKSpriteNode(string assetName)
+        {
+            Texture2D texture = SKScene.current.Texture2D(assetName);
+
+            load(texture, Color.White, new Vector2(texture.Width, texture.Height));
+        }
+
         void load(Texture2D texture, Color color, Vector2 size)
         {
             texture2D = texture;
@@ -104,18 +126,10 @@ namespace Hydra
             sourceRectangle = null;
             this.color = color;
             zRotation = 0;
-            origin = new Vector2(texture2D.Bounds.Width * 0.5f, texture2D.Bounds.Height * 0.5f);
             scale = Vector2.One;
             this.size = size;
             effects = SpriteEffects.None;
             layerDepth = 0.0f;
-        }
-
-        public SKSpriteNode(string assetName)
-        {
-            Texture2D texture = SKScene.current.Texture2D(assetName);
-
-            load(texture, Color.White, new Vector2(texture.Width, texture.Height));
         }
 
         internal override void beforeDraw()
@@ -130,18 +144,26 @@ namespace Hydra
             }
         }
 
-		internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
-			if (isHidden || alpha <= 0.0f)
+            if (isHidden || alpha <= 0.0f)
             {
                 return;
             }
 
             beforeDraw();
 
-            Game1.spriteBatch.Draw(texture2D, currentPosition + position * currentScale, sourceRectangle, drawColor * alpha * currentAlpha, zRotation, origin, currentScale * drawScale, effects, layerDepth);
+            Game1.spriteBatch.Draw(texture2D,
+                                   currentPosition + position * currentScale,
+                                   sourceRectangle,
+                                   drawColor * alpha * currentAlpha,
+                                   zRotation,
+                                   origin,
+                                   currentScale * drawScale,
+                                   effects,
+                                   layerDepth);
 
-			drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(currentPosition, currentAlpha, currentScale);
         }
 
         internal void setScaleToFit(float width, float height)
