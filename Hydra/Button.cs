@@ -22,18 +22,16 @@ namespace Hydra
 
         SKSpriteNode icon;
 
-        public Button(string assetName, float x, float y) : base(assetName, x, y)
+        public Button(string assetName, float x = 0, float y = 0,
+                       HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
+                      VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName, x, y, horizontalAlignment, verticalAlignment)
         {
             state = ButtonState.Released;
             bounds = texture2D.Bounds;
-            SKScene.current.buttonList.Add(this);
-        }
 
-        public Button(string assetName, float x = 0, float y = 0,
-                       HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
-                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : this(assetName, x, y)
-        {
             setAlignment(horizontalAlignment, verticalAlignment);
+
+            SKScene.current.buttonList.Add(this);
         }
 
         internal virtual void touchDown()
@@ -69,11 +67,11 @@ namespace Hydra
             }
         }
 
-        internal bool contains(Vector2 position)
+        internal bool contains(Vector2 somePosition)
         {
-            bounds.X = (int)this.position.X;
-            bounds.Y = (int)this.position.Y;
-            return bounds.Contains(position);
+            bounds.X = (int)position.X;
+            bounds.Y = (int)position.Y;
+            return bounds.Contains(somePosition);
         }
 
         internal void setIcon(string assetName)
@@ -101,15 +99,15 @@ namespace Hydra
             touchUpEvent.Add(action);
         }
 
-        internal void set(Color color, BlendState blendState)
+        internal void set(Color someColor, BlendState someBlendState)
         {
-            this.color = color;
-            this.blendState = blendState;
+            color = someColor;
+            blendState = someBlendState;
 
             if (icon != null)
             {
-                icon.color = color;
-                icon.blendState = blendState;
+                icon.color = someColor;
+                icon.blendState = someBlendState;
             }
         }
     }

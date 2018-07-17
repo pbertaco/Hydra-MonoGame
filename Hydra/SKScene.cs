@@ -39,10 +39,7 @@ namespace Hydra
             physicsWorld = new PhysicsWorld();
             gameWorld = new GameWorld();
 
-            Control control = new Control("null", defaultSize.X / 2, defaultSize.Y / 2)
-            {
-                color = Color.Transparent
-            };
+            Control control = new Control("", defaultSize.X / 2, defaultSize.Y / 2);
             control.setAlignment(HorizontalAlignment.center, VerticalAlignment.center);
             addChild(control);
 
@@ -150,6 +147,12 @@ namespace Hydra
             }
 
             base.draw(Vector2.Zero, 1.0f, Vector2.One);
+        }
+
+        internal void addChild(Box box)
+        {
+            addChild(box.blackSpriteNode);
+            base.addChild(box);
         }
     }
 }

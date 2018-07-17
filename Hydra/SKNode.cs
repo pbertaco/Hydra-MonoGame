@@ -133,7 +133,7 @@ namespace Hydra
             }
         }
 
-        internal void addChild(SKNode node)
+        internal virtual void addChild(SKNode node)
         {
             children.Add(node);
             node.parent = this;

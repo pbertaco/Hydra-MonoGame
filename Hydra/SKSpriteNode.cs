@@ -137,18 +137,18 @@ namespace Hydra
         {
             Texture2D texture = SKScene.current.Texture2D(assetName);
 
-            load(texture, Color.White, new Vector2(texture.Width, texture.Height));
+            load(texture, assetName == "" ? Color.Transparent : Color.White, new Vector2(texture.Width, texture.Height));
         }
 
-        void load(Texture2D texture, Color color, Vector2 size)
+        void load(Texture2D texture, Color someColor, Vector2 someSize)
         {
             texture2D = texture;
             position = Vector2.Zero;
             sourceRectangle = null;
-            this.color = color;
+            color = someColor;
             zRotation = 0;
             scale = Vector2.One;
-            this.size = size;
+            size = someSize;
             effects = SpriteEffects.None;
             layerDepth = 0.0f;
         }
@@ -201,9 +201,9 @@ namespace Hydra
             }
         }
 
-        internal void setScaleToFit(Vector2 size)
+        internal void setScaleToFit(Vector2 someSize)
         {
-            setScaleToFit(size.X, size.Y);
+            setScaleToFit(someSize.X, someSize.Y);
         }
     }
 }

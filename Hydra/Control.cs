@@ -28,19 +28,16 @@ namespace Hydra
         HorizontalAlignment horizontalAlignment = HorizontalAlignment.left;
         VerticalAlignment verticalAlignment = VerticalAlignment.top;
 
-        public Control(string assetName, float x = 0, float y = 0) : base(assetName)
-        {
-            origin = Vector2.Zero;
-
-            sketchPosition = new Vector2(x, y);
-            SKScene.current.controlList.Add(this);
-        }
-
         public Control(string assetName, float x = 0, float y = 0,
                        HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
-                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : this(assetName, x, y)
+                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName)
         {
+            origin = Vector2.Zero;
+            sketchPosition = new Vector2(x, y);
+
             setAlignment(horizontalAlignment, verticalAlignment);
+
+            SKScene.current.controlList.Add(this);
         }
 
         internal static Vector2 positionWith(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
@@ -51,20 +48,20 @@ namespace Hydra
                 );
         }
 
-        internal void resetPosition()
+        internal virtual void resetPosition()
         {
             position = positionWith(sketchPosition, horizontalAlignment, verticalAlignment);
         }
 
-        internal Vector2 positionWith(Vector2 sketchPosition)
+        internal Vector2 positionWith(Vector2 someSketchPosition)
         {
-            return positionWith(sketchPosition, horizontalAlignment, verticalAlignment);
+            return positionWith(someSketchPosition, horizontalAlignment, verticalAlignment);
         }
 
-        internal void setAlignment(HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
+        internal void setAlignment(HorizontalAlignment someHorizontalAlignment, VerticalAlignment someVerticalAlignment)
         {
-            this.horizontalAlignment = horizontalAlignment;
-            this.verticalAlignment = verticalAlignment;
+            horizontalAlignment = someHorizontalAlignment;
+            verticalAlignment = someVerticalAlignment;
             resetPosition();
         }
     }
