@@ -67,7 +67,7 @@ namespace Hydra
 
         internal virtual void update()
         {
-
+            
         }
 
         internal virtual void didFinishUpdate()

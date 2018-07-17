@@ -240,7 +240,7 @@ namespace Hydra
                 if (button.state == ButtonState.Pressed)
                 {
                     button.touchUp();
-                    if (button.parent != null && button.touchUpAction != null)
+                    if (button.parent != null && button.touchUpEvent != null)
                     {
                         if (button.contains(touch.locationIn(button.parent)))
                         {

@@ -14,7 +14,7 @@ namespace Hydra
 {
     class Button : Control
     {
-        internal Action touchUpAction;
+        internal List<Action> touchUpEvent;
 
         Rectangle bounds;
 
@@ -36,7 +36,7 @@ namespace Hydra
             setAlignment(horizontalAlignment, verticalAlignment);
         }
 
-		internal void touchDown()
+        internal virtual void touchDown()
         {
             resetPosition();
             scale = Vector2.One;
@@ -51,7 +51,7 @@ namespace Hydra
             }), "Button.touchDown");
         }
 
-        internal void touchUp()
+        internal virtual void touchUp()
         {
             float duration = 0.125f;
 
@@ -63,7 +63,10 @@ namespace Hydra
 
         internal void touchUpInside()
         {
-            touchUpAction();
+            foreach (Action handler in touchUpEvent)
+            {
+                handler();
+            }
         }
 
         internal bool contains(Vector2 position)
@@ -86,6 +89,16 @@ namespace Hydra
             icon?.removeFromParent();
             icon = newIcon;
 
+        }
+
+        internal void addHandler(Action action)
+        {
+            if (touchUpEvent == null)
+            {
+                touchUpEvent = new List<Action>();
+            }
+
+            touchUpEvent.Add(action);
         }
 
         internal void set(Color color, BlendState blendState)
