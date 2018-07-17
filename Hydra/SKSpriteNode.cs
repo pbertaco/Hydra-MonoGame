@@ -60,7 +60,21 @@ namespace Hydra
             }
         }
 
-        protected Rectangle? sourceRectangle;
+        protected Rectangle? _sourceRectangle;
+        protected Rectangle? sourceRectangle
+        {
+            get
+            {
+                return _sourceRectangle;
+            }
+            set
+            {
+                _sourceRectangle = value;
+                size = _size;
+            }
+        }
+
+
         protected SpriteEffects effects;
         protected float layerDepth;
 
@@ -77,7 +91,14 @@ namespace Hydra
             set
             {
                 _size = value / base.scale;
-                sizeScale = new Vector2(_size.X / texture2D.Width, _size.Y / texture2D.Height);
+                if (sourceRectangle != null)
+                {
+                    sizeScale = new Vector2(_size.X / sourceRectangle.Value.Width, _size.Y / sourceRectangle.Value.Height);
+                }
+                else
+                {
+                    sizeScale = new Vector2(_size.X / texture2D.Width, _size.Y / texture2D.Height);
+                }
                 drawScale = sizeScale * base.scale;
             }
         }
