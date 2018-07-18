@@ -184,7 +184,10 @@ namespace Hydra
                 }
             }
 #else
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || 
+                keyboardState.IsKeyDown(Keys.Escape) ||
+                (keyboardState.IsKeyDown(Keys.LeftWindows) || keyboardState.IsKeyDown(Keys.RightWindows)) && keyboardState.IsKeyDown(Keys.Q))
             {
                 Exit();
             }
