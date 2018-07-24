@@ -8,33 +8,48 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-	public class SKNode
-	{
-		internal static Random random = new Random();
+    public class SKNode
+    {
+        internal static Random random = new Random();
 
-		internal Vector2 position;
+        Vector2 _position;
+        internal Vector2 position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                if (physicsBody != null)
+                {
+                    physicsBody.Position = ConvertUnits.ToSimUnits(value);
+                }
+                _position = value;
+            }
+        }
 
-		float _zRotation;
-		internal float zRotation
-		{
-			get
-			{
-				return _zRotation;
-			}
-			set
-			{
-				_zRotation = value;
-				if (physicsBody != null)
-				{
-					physicsBody.Rotation = value;
-				}
-			}
-		}
+        float _zRotation;
+        internal float zRotation
+        {
+            get
+            {
+                return _zRotation;
+            }
+            set
+            {
+                _zRotation = value;
+                if (physicsBody != null)
+                {
+                    physicsBody.Rotation = value;
+                }
+            }
+        }
 
-		Vector2 _scale;
-		internal virtual Vector2 scale { get => _scale; set => _scale = value; }
+        Vector2 _scale;
+        internal virtual Vector2 scale { get => _scale; set => _scale = value; }
 
-		internal bool isHidden;
+        internal bool isHidden;
 
         internal object userData;
 
@@ -44,7 +59,20 @@ namespace Hydra
 
         internal List<SKNode> children;
 
-        internal SKPhysicsBody physicsBody;
+        SKPhysicsBody _physicsBody;
+        internal SKPhysicsBody physicsBody
+        {
+            get
+            {
+                return _physicsBody;
+            }
+            set
+            {
+                _physicsBody = value;
+                position = _position;
+                zRotation = _zRotation;
+            }
+        }
 
         internal Dictionary<string, SKAction> actions;
         internal List<String> actionsToRemove;
@@ -57,7 +85,7 @@ namespace Hydra
             children = new List<SKNode>();
             actions = new Dictionary<string, SKAction>();
             actionsToRemove = new List<string>();
-			_scale = Vector2.One;
+            _scale = Vector2.One;
         }
 
         internal void run(SKAction action)
@@ -100,7 +128,7 @@ namespace Hydra
             actions.Remove(key);
         }
 
-        internal void removeAllActions() 
+        internal void removeAllActions()
         {
             actions.Clear();
         }
@@ -227,24 +255,24 @@ namespace Hydra
         {
             if (physicsBody != null)
             {
-                position = ConvertUnits.ToDisplayUnits(physicsBody.Position) - parent.positionInNode(SKScene.current.gameWorld);
+                position = ConvertUnits.ToDisplayUnits(physicsBody.Position);
                 zRotation = physicsBody.Rotation;
             }
         }
 
-		internal virtual void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal virtual void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
-			if (isHidden || alpha <= 0.0f)
+            if (isHidden || alpha <= 0.0f)
             {
                 return;
             }
 
             beforeDraw();
 
-			drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(currentPosition, currentAlpha, currentScale);
         }
 
-		protected void drawChildren(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        protected void drawChildren(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
             foreach (SKNode node in children)
             {

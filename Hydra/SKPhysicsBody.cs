@@ -57,7 +57,7 @@ namespace Hydra
             load(vertices);
         }
 
-        private void load(Vertices vertices)
+        void load(Vertices vertices)
         {
             vertices.Scale(ConvertUnits.ToSimUnits(Vector2.One));
             PolygonShape polygonShape = new PolygonShape(vertices, 1.0f);
