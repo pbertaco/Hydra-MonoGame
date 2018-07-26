@@ -116,7 +116,7 @@ namespace Hydra
             GC.Collect();
         }
 
-        internal void updateSize()
+        internal virtual void updateSize()
         {
             foreach (Control control in controlList)
             {
