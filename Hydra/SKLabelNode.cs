@@ -10,12 +10,53 @@ namespace Hydra
     public class SKLabelNode : SKNode
     {
         SpriteFont spriteFont;
-        string text;
-        Color color;
         Vector2 origin;
         SpriteEffects effects;
         float layerDepth;
 
+        string _text;
+        internal string text {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                _text = value;
+                Vector2 size = spriteFont.MeasureString(value);
+                origin = new Vector2(size.X * 0.5f, size.Y * 0.5f);
+            }
+        }
+
+        Color drawColor;
+
+        Color _color;
+        internal Color color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                drawColor = _color * (1.0f - colorBlendFactor);
+            }
+        }
+
+        float _colorBlendFactor;
+        internal float colorBlendFactor
+        {
+            get
+            {
+                return _colorBlendFactor;
+            }
+            set
+            {
+                _colorBlendFactor = value;
+                drawColor = color * (1.0f - _colorBlendFactor);
+            }
+        }
 
         public SKLabelNode(string assetName, string text)
         {
@@ -29,8 +70,6 @@ namespace Hydra
             position = Vector2.Zero;
             color = Color.White;
             zRotation = 0;
-            Vector2 size = spriteFont.MeasureString(someText);
-            origin = new Vector2(size.X * 0.5f, size.Y * 0.5f);
             scale = Vector2.One;
             effects = SpriteEffects.None;
             layerDepth = 0;
@@ -43,7 +82,16 @@ namespace Hydra
                 return;
             }
 
-            Game1.spriteBatch.DrawString(spriteFont, text, currentPosition + position * currentScale, color * currentAlpha * alpha, zRotation, origin, currentScale * scale, effects, layerDepth);
+            Game1.spriteBatch.DrawString(spriteFont,
+                                         text,
+                                         currentPosition + position * currentScale,
+                                         drawColor * alpha * currentAlpha,
+                                         zRotation,
+                                         origin,
+                                         currentScale * scale, // TODO: currentScale * drawScale
+                                         effects,
+                                         layerDepth);
+            
 			base.draw(currentPosition, currentAlpha, currentScale);
         }
     }

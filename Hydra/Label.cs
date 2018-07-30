@@ -23,14 +23,15 @@ namespace Hydra
                      FontName fontName = FontName.Default,
                      FontSize fontSize = FontSize.Default) : base((fontName == FontName.Default ?
                                                                    defaultFontName :
-                                                                   fontName).ToString() + 
+                                                                   fontName).ToString() +
                                                                   (fontSize == FontSize.Default ?
                                                                    defaultFontSize :
                                                                    fontSize).GetHashCode(), text)
         {
             sketchPosition = new Vector2(x, y);
             setAlignment(horizontalAlignment, verticalAlignment);
-        SKScene.current.labelList.Add(this);
+            color = defaultColor;
+            SKScene.current.labelList.Add(this);
         }
 
         internal void resetPosition()
@@ -38,10 +39,10 @@ namespace Hydra
             position = Control.positionWith(sketchPosition, horizontalAlignment, verticalAlignment);
         }
 
-        internal void setAlignment(HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
+        internal void setAlignment(HorizontalAlignment someHorizontalAlignment, VerticalAlignment someVerticalAlignment)
         {
-            this.horizontalAlignment = horizontalAlignment;
-            this.verticalAlignment = verticalAlignment;
+            horizontalAlignment = someHorizontalAlignment;
+            verticalAlignment = someVerticalAlignment;
             resetPosition();
         }
     }
