@@ -8,7 +8,7 @@ namespace Hydra
 {
     public class Label : SKLabelNode
     {
-        internal static Color defaultColor = GameColors.fontBlack;
+        internal static Color defaultColor = GameColors.fontWhite;
         internal static FontName defaultFontName = FontName.SpriteFont;
         internal static FontSize defaultFontSize = FontSize.size32;
 
