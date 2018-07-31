@@ -169,5 +169,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)FarseerPhysics\Factories\LinkFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Easing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Box.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hydra\Music.cs" />
   </ItemGroup>
 </Project>

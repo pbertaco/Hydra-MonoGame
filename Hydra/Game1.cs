@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 using Hydra.Scenes;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Hydra
 {
@@ -30,12 +32,17 @@ namespace Hydra
         Dictionary<int, Touch> touches;
         MouseState lastMouseState;
 
+        public ContentManager songManager;
+
         public Game1()
         {
             new MemoryCard().loadGame();
 
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            songManager = new ContentManager(Content.ServiceProvider, "Content");
+            Music.sharedInstance.contentManager = songManager;
 
             samplerState = SamplerState.LinearClamp;
 
