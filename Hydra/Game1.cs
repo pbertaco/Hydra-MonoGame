@@ -11,6 +11,10 @@ using Microsoft.Xna.Framework.Media;
 
 using Hydra.Scenes;
 
+#if __IOS__ || __ANDROID__
+using Microsoft.Xna.Framework.Input.Touch;
+#endif
+
 namespace Hydra
 {
     /// <summary>
@@ -166,7 +170,7 @@ namespace Hydra
                     case TouchLocationState.Pressed: 
                         {
                             Touch touch = new Touch(position);
-                            GameScene.current.touchDown(touch);
+                            SKScene.current.touchDown(touch);
                             touches.Add(touchLocation.Id, touch);
                         }
                         break;
@@ -174,14 +178,14 @@ namespace Hydra
                         {
                             Touch touch = touches[touchLocation.Id];
                             touch.moved(position);
-                            GameScene.current.touchMoved(touch);
+                            SKScene.current.touchMoved(touch);
                         }
                         break;
                     case TouchLocationState.Released:
                         {
                             Touch touch = touches[touchLocation.Id];
                             touch.up(position);
-                            GameScene.current.touchUp(touch);
+                            SKScene.current.touchUp(touch);
                             touchUp(touch);
                             touches.Remove(touchLocation.Id);
                         }
