@@ -76,11 +76,6 @@ namespace Hydra
             graphicsDeviceManager.PreferredBackBufferHeight = (int)(graphicsDeviceManager.GraphicsDevice.DisplayMode.Height * 0.9);
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
-
-            //graphics.IsFullScreen = true;
-            //graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
-            //graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
-            //IsMouseVisible = true;
 #endif
             graphicsDeviceManager.ApplyChanges();
 
@@ -103,17 +98,8 @@ namespace Hydra
         void updateSize()
         {
             Vector2 defaultSize = SKScene.defaultSize;
-
             Vector2 currentSize = Vector2.Zero;
 
-#if __IOS__ || __ANDROID__
-            float xScale = graphicsDeviceManager.GraphicsDevice.DisplayMode.Width / defaultSize.X;
-            float yScale = graphicsDeviceManager.GraphicsDevice.DisplayMode.Height / defaultSize.Y;
-            float scale = Math.Min(xScale, yScale);
-
-            currentSize.X = graphicsDeviceManager.GraphicsDevice.DisplayMode.Width / scale;
-            currentSize.Y = graphicsDeviceManager.GraphicsDevice.DisplayMode.Height / scale;
-#else
             graphicsDeviceManager.PreferredBackBufferWidth = Window.ClientBounds.Width;
             graphicsDeviceManager.PreferredBackBufferHeight = Window.ClientBounds.Height;
 
@@ -123,7 +109,6 @@ namespace Hydra
 
             currentSize.X = graphicsDeviceManager.PreferredBackBufferWidth / scale;
             currentSize.Y = graphicsDeviceManager.PreferredBackBufferHeight / scale;
-#endif
 
             SKScene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
             SKScene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
@@ -157,6 +142,15 @@ namespace Hydra
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+#if __MACOS__
+            KeyboardState keyboardState = Keyboard.GetState();
+            if ((keyboardState.IsKeyDown(Keys.LeftWindows) || keyboardState.IsKeyDown(Keys.RightWindows)) && keyboardState.IsKeyDown(Keys.Q))
+            {
+                Exit();
+            }
+#endif
+
 #if __IOS__ || __ANDROID__
             TouchCollection touchCollection = TouchPanel.GetState();
             foreach (TouchLocation touchLocation in touchCollection)
@@ -195,13 +189,6 @@ namespace Hydra
                 }
             }
 #else
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || 
-                keyboardState.IsKeyDown(Keys.Escape) ||
-                (keyboardState.IsKeyDown(Keys.LeftWindows) || keyboardState.IsKeyDown(Keys.RightWindows)) && keyboardState.IsKeyDown(Keys.Q))
-            {
-                Exit();
-            }
 
             MouseState mouseState = Mouse.GetState();
 

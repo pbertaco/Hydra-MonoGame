@@ -16,8 +16,6 @@ namespace Hydra
     {
         internal List<Action> touchUpEvent;
 
-        Rectangle bounds;
-
         internal ButtonState state;
 
         SKSpriteNode icon;
@@ -27,7 +25,6 @@ namespace Hydra
                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName, x, y, horizontalAlignment, verticalAlignment)
         {
             state = ButtonState.Released;
-            bounds = texture2D.Bounds;
 
             setAlignment(horizontalAlignment, verticalAlignment);
 
@@ -69,8 +66,7 @@ namespace Hydra
 
         internal bool contains(Vector2 somePosition)
         {
-            bounds.X = (int)position.X;
-            bounds.Y = (int)position.Y;
+            Rectangle bounds = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
             return bounds.Contains(somePosition);
         }
 
