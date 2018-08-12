@@ -28,7 +28,14 @@ namespace Hydra
 
             this.musicName = musicName;
 
-            Microsoft.Xna.Framework.Media.MediaPlayer.Play(Song(musicName));
+            Song song = Song(musicName);
+
+            if (song != null)
+            {
+                Microsoft.Xna.Framework.Media.MediaPlayer.Play(song);
+            } else {
+                Microsoft.Xna.Framework.Media.MediaPlayer.Stop();
+            }
         }
 
         Song Song(string assetName)
@@ -39,9 +46,9 @@ namespace Hydra
             {
                 song = contentManager.Load<Song>("Song/" + assetName);
             }
-            catch (ContentLoadException)
+            catch (Exception)
             {
-                song = contentManager.Load<Song>("Song/null");
+                song = null;
             }
 
             return song;
