@@ -103,6 +103,8 @@ namespace Hydra
             }
         }
 
+        internal Vector2 anchorPoint; // TODO: anchorPoint
+
         internal override Vector2 scale
         {
             get

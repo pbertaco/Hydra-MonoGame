@@ -20,15 +20,18 @@ namespace Hydra
 
         string musicName = "";
 
-        internal void play(string musicName)
+        internal void play(string someMusicName)
         {
-            if (this.musicName == musicName) { return; }
+#if DEBUG
+            return;
+#endif
+            if (musicName == someMusicName) { return; }
 
             contentManager.Unload();
 
-            this.musicName = musicName;
+            musicName = someMusicName;
 
-            Song song = Song(musicName);
+            Song song = Song(someMusicName);
 
             if (song != null)
             {
