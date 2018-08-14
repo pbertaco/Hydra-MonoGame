@@ -32,7 +32,7 @@ namespace Hydra
                        HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
                        VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName)
         {
-            origin = Vector2.Zero;
+            anchorPoint = Vector2.Zero;
             sketchPosition = new Vector2(x, y);
 
             setAlignment(horizontalAlignment, verticalAlignment);

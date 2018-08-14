@@ -14,6 +14,23 @@ namespace Hydra
     {
         protected Vector2 origin;
 
+        Vector2 _anchorPoint;
+        internal Vector2 anchorPoint
+        {
+            get
+            {
+                return _anchorPoint;
+            }
+            set
+            {
+                _anchorPoint = value;
+                if (_texture2D != null)
+                {
+                    origin = new Vector2(_texture2D.Bounds.Width * anchorPoint.X, _texture2D.Bounds.Height * anchorPoint.Y);
+                }
+            }
+        }
+
         Texture2D _texture2D;
         internal Texture2D texture2D
         {
@@ -26,7 +43,7 @@ namespace Hydra
             {
                 _texture2D = value;
                 size = _size;
-                origin = new Vector2(_texture2D.Bounds.Width * 0.5f, _texture2D.Bounds.Height * 0.5f);
+                origin = new Vector2(_texture2D.Bounds.Width * anchorPoint.X, _texture2D.Bounds.Height * anchorPoint.Y);
             }
         }
 
@@ -103,8 +120,6 @@ namespace Hydra
             }
         }
 
-        internal Vector2 anchorPoint; // TODO: anchorPoint
-
         internal override Vector2 scale
         {
             get
@@ -144,6 +159,7 @@ namespace Hydra
 
         void load(Texture2D texture, Color someColor, Vector2 someSize)
         {
+            anchorPoint = Vector2.One * 0.5f;
             texture2D = texture;
             position = Vector2.Zero;
             sourceRectangle = null;
