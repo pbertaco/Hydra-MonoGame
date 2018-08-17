@@ -170,5 +170,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Easing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Box.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Music.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hydra\Utils\Vector2Extension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Hydra\Utils\" />
   </ItemGroup>
 </Project>
