@@ -223,5 +223,11 @@ namespace Hydra
         {
             setScaleToFit(someSize.X, someSize.Y);
         }
+
+        internal override bool contains(Vector2 somePosition)
+        {
+            Rectangle bounds = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
+            return bounds.Contains(somePosition);
+        }
     }
 }

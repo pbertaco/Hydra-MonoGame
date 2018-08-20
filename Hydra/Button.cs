@@ -64,12 +64,6 @@ namespace Hydra
             }
         }
 
-        internal bool contains(Vector2 somePosition)
-        {
-            Rectangle bounds = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
-            return bounds.Contains(somePosition);
-        }
-
         internal void setIcon(string assetName)
         {
             Texture2D texture = SKScene.current.Texture2D(assetName);

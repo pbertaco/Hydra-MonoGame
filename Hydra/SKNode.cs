@@ -294,5 +294,10 @@ namespace Hydra
 
             return currentPosition + position;
         }
+
+        internal virtual bool contains(Vector2 somePosition)
+        {
+            return false;
+        }
     }
 }
