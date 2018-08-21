@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionWait : SKAction
+    class ActionWait : SKAction
     {
         float durationBase;
         float durationRange;

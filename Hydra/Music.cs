@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class Music
+    class Music
     {
         internal static Music sharedInstance = new Music();
 

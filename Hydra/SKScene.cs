@@ -11,7 +11,7 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class SKScene : SKNode
+    class SKScene : SKNode
     {
         internal static SKScene current;
         internal static Color backgroundColor = GameColors.backgroundColor;

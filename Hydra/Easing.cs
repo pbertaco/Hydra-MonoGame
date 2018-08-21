@@ -2,7 +2,7 @@
 
 namespace Hydra
 {
-    public class Easing
+    class Easing
     {
         #region Linear
 

@@ -8,7 +8,7 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class SKNode
+    class SKNode
     {
         internal static Random random = new Random();
 

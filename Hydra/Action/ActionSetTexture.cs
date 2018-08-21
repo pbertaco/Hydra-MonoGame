@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionSetTexture : SKAction
+    class ActionSetTexture : SKAction
     {
         Texture2D texture2D;
         bool resize;

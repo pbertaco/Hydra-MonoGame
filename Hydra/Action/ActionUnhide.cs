@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionUnhide : SKAction
+    class ActionUnhide : SKAction
     {
         public ActionUnhide() : base(0)
         {

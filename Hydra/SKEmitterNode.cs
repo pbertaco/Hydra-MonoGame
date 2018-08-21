@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hydra
 {
-    public class SKEmitterNode : SKSpriteNode
+    class SKEmitterNode : SKSpriteNode
     {
         List<Particle> particles = new List<Particle>();
 

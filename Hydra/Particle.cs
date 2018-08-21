@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class Particle
+    class Particle
     {
         internal Vector2 position;
 

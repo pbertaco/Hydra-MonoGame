@@ -14,7 +14,7 @@ namespace Hydra
 {
     using SKActionTimingFunction = Func<float, float, float, float, float>;
 
-    public class SKAction
+    class SKAction
     {
         /// <summary>
         /// The duration required to complete an action, in seconds.

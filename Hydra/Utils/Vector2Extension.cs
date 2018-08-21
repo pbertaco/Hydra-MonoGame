@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public static class Vector2Extension
+    static class Vector2Extension
     {
         public static float distanceTo(this Vector2 vector2, Vector2 position)
         {

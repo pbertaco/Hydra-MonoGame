@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Hydra
 {
-    public class ServerManager
+    class ServerManager
     {
         internal static ServerManager current;
 

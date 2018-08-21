@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionRemoveFromParent : SKAction
+    class ActionRemoveFromParent : SKAction
     {
         public ActionRemoveFromParent() : base(0)
         {

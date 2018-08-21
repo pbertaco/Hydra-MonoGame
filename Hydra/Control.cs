@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public enum HorizontalAlignment { left, center, right }
-    public enum VerticalAlignment { top, center, bottom }
+    enum HorizontalAlignment { left, center, right }
+    enum VerticalAlignment { top, center, bottom }
 
-    public class Control : SKSpriteNode
+    class Control : SKSpriteNode
     {
         Vector2 _sketchPosition;
         public Vector2 sketchPosition

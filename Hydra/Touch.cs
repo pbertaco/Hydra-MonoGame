@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class Touch
+    class Touch
     {
         Vector2 lastPosition;
         Vector2 position;

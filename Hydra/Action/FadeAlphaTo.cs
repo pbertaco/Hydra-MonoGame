@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class FadeAlphaTo : FadeAlphaBy
+    class FadeAlphaTo : FadeAlphaBy
     {
         public FadeAlphaTo(float factor, float duration) : base(factor, duration)
         {

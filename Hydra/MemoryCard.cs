@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class MemoryCard
+    class MemoryCard
     {
         internal static MemoryCard current;
 

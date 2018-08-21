@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class ActionRepeat : SKAction
+    class ActionRepeat : SKAction
     {
         SKAction action;
         int count;

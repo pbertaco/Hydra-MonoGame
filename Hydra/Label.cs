@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class Label : SKLabelNode
+    class Label : SKLabelNode
     {
         internal static Color defaultColor = GameColors.fontWhite;
         internal static FontName defaultFontName = FontName.SpriteFont;

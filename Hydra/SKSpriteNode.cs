@@ -10,7 +10,7 @@ using FarseerPhysics;
 
 namespace Hydra
 {
-    public class SKSpriteNode : SKNode
+    class SKSpriteNode : SKNode
     {
         protected Vector2 origin;
 

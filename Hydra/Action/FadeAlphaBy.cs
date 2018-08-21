@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Hydra
 {
-    public class FadeAlphaBy : SKAction
+    class FadeAlphaBy : SKAction
     {
         protected float factor;
         protected float speed;

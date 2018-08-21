@@ -20,7 +20,7 @@ namespace Hydra
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    class Game1 : Game
     {
         GraphicsDeviceManager graphicsDeviceManager;
         internal static SpriteBatch spriteBatch;

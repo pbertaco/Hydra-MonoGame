@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hydra
 {
-    public class SKLabelNode : SKNode
+    class SKLabelNode : SKNode
     {
         SpriteFont spriteFont;
         Vector2 origin;
