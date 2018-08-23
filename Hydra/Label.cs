@@ -12,7 +12,7 @@ namespace Hydra
         internal static FontName defaultFontName = FontName.SpriteFont;
         internal static FontSize defaultFontSize = FontSize.size32;
 
-        Vector2 sketchPosition;
+        internal Vector2 sketchPosition;
 
         HorizontalAlignment horizontalAlignment = HorizontalAlignment.left;
         VerticalAlignment verticalAlignment = VerticalAlignment.top;

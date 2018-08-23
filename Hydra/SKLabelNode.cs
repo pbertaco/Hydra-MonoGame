@@ -10,7 +10,24 @@ namespace Hydra
     class SKLabelNode : SKNode
     {
         SpriteFont spriteFont;
+
         Vector2 origin;
+
+        Vector2 _anchorPoint;
+        internal Vector2 anchorPoint
+        {
+            get
+            {
+                return _anchorPoint;
+            }
+            set
+            {
+                _anchorPoint = value;
+                Vector2 size = spriteFont.MeasureString(_text);
+                origin = new Vector2(size.X * anchorPoint.X, size.Y * anchorPoint.Y);
+            }
+        }
+
         SpriteEffects effects;
         float layerDepth;
 
@@ -88,7 +105,7 @@ namespace Hydra
                                          drawColor * alpha * currentAlpha,
                                          zRotation,
                                          origin,
-                                         currentScale * scale, // TODO: currentScale * drawScale
+                                         currentScale * scale * 0.370967742f, // TODO: currentScale * drawScale
                                          effects,
                                          layerDepth);
             

@@ -19,8 +19,9 @@ namespace Hydra
         internal ButtonState state;
 
         SKSpriteNode icon;
+        Label label;
 
-        public Button(string assetName, float x = 0, float y = 0,
+        public Button(string assetName, float x = 0.0f, float y = 0.0f,
                        HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName, x, y, horizontalAlignment, verticalAlignment)
         {
@@ -37,8 +38,8 @@ namespace Hydra
             scale = Vector2.One;
 
             float duration = 0.125f;
-            float x = position.X + (size.X / 2) * 0.05f;
-            float y = position.Y + (size.Y / 2) * 0.05f;
+            float x = position.X + (size.X / 2.0f) * 0.05f;
+            float y = position.Y + (size.Y / 2.0f) * 0.05f;
 
             run(SKAction.group(new[] {
                 SKAction.scaleTo(0.95f, duration),
@@ -71,12 +72,19 @@ namespace Hydra
 
             newIcon.setScaleToFit(size);
 
-            newIcon.position = new Vector2(size.X / 2, size.Y / 2);
+            newIcon.position = new Vector2(size.X / 2.0f, size.Y / 2.0f);
 
             addChild(newIcon);
             icon?.removeFromParent();
             icon = newIcon;
 
+        }
+
+        internal void setLabel(Label someLabel) {
+            label = someLabel;
+            label.sketchPosition += size / 2.0f;
+            label.resetPosition();
+            addChild(label);
         }
 
         internal void addHandler(Action action)
