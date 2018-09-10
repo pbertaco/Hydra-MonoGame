@@ -10,28 +10,43 @@ namespace Hydra
 {
     class SKShapeNode : SKSpriteNode
     {
-        public SKShapeNode(float radius) : base("")
+        public SKShapeNode(int radius) : base("")
         {
-            float diameter = radius * 2.0f;
-            float radiusSquared = radius * radius;
+            int diameter = radius * 2;
 
-            float auxRadiusSquared = (radius - 2.0f) * (radius - 2.0f);
+            Color[] colors = new Color[(diameter * diameter)];
 
-            Color[] colors = new Color[(int)(diameter * diameter)];
+            int x = radius - 1;
+            int y = 0;
+            int dx = 1;
+            int dy = 1;
+            int decisionOver2 = dx - diameter;
 
-            for (int x = 0; x < diameter; x++)
+            while (x >= y)
             {
-                for (int y = 0; y < diameter; y++)
+                colors[(x + radius) * diameter + (y + radius)] = Color.White;
+                colors[(y + radius) * diameter + (x + radius)] = Color.White;
+
+                colors[(-x + radius) * diameter + (y + radius)] = Color.White;
+                colors[(-y + radius) * diameter + (x + radius)] = Color.White;
+
+                colors[(-x + radius) * diameter + (-y + radius)] = Color.White;
+                colors[(-y + radius) * diameter + (-x + radius)] = Color.White;
+
+                colors[(x + radius) * diameter + (-y + radius)] = Color.White;
+                colors[(y + radius) * diameter + (-x + radius)] = Color.White;
+
+                if (decisionOver2 <= 0)
                 {
-                    float i = x * diameter + y;
-
-                    Vector2 pixelPosition = new Vector2(x - radius, y - radius);
-                    float lengthSquared = pixelPosition.LengthSquared();
-
-                    if (lengthSquared > auxRadiusSquared && lengthSquared < radiusSquared)
-                    {
-                        colors[(int)i] = Color.White;
-                    }
+                    y++;
+                    decisionOver2 += dy;
+                    dy += 2;
+                }
+                if (decisionOver2 > 0)
+                {
+                    x--;
+                    dx += 2;
+                    decisionOver2 += (-diameter) + dx;
                 }
             }
 
