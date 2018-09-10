@@ -38,6 +38,8 @@ namespace Hydra
 
         public ContentManager songManager;
 
+        internal static Game1 sharedInstance;
+
         public Game1()
         {
             new MemoryCard().loadGame();
@@ -51,6 +53,8 @@ namespace Hydra
             samplerState = SamplerState.LinearClamp;
 
             touches = new Dictionary<int, Touch>();
+
+            sharedInstance = this;
         }
 
         /// <summary>
