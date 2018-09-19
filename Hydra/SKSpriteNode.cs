@@ -226,7 +226,10 @@ namespace Hydra
 
         internal override bool contains(Vector2 somePosition)
         {
-            Rectangle bounds = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
+            Rectangle bounds = new Rectangle((int)(position.X - (size.X * anchorPoint.X)),
+                                             (int)(position.Y - (size.Y * anchorPoint.Y)),
+                                             (int)size.X,
+                                             (int)size.Y);
             return bounds.Contains(somePosition);
         }
     }

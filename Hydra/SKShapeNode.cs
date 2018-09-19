@@ -12,6 +12,8 @@ namespace Hydra
     {
         public SKShapeNode(int radius) : base("")
         {
+            color = Color.White;
+
             int diameter = radius * 2;
 
             Color[] colors = new Color[(diameter * diameter)];
