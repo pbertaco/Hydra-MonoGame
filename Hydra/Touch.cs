@@ -8,7 +8,7 @@ namespace Hydra
 {
     class Touch
     {
-        Vector2 lastPosition;
+        internal Vector2 lastPosition;
         Vector2 position;
 
         internal Vector2 delta;

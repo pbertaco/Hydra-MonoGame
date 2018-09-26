@@ -175,8 +175,10 @@ namespace Hydra
                     case TouchLocationState.Moved:
                         {
                             Touch touch = touches[touchLocation.Id];
-                            touch.moved(position);
-                            SKScene.current.touchMoved(touch);
+                            if (position != touch.lastPosition) {
+                                touch.moved(position);
+                                SKScene.current.touchMoved(touch);    
+                            }
                         }
                         break;
                     case TouchLocationState.Released:
@@ -196,6 +198,9 @@ namespace Hydra
 
             MouseState mouseState = Mouse.GetState();
 
+            Vector2 lastPosition = new Vector2(
+                lastMouseState.X / transformMatrix.M11,
+                lastMouseState.Y / transformMatrix.M22);
             Vector2 position = new Vector2(
                 mouseState.X / transformMatrix.M11,
                 mouseState.Y / transformMatrix.M22);
@@ -204,9 +209,12 @@ namespace Hydra
             {
                 if (lastMouseState.LeftButton == ButtonState.Pressed)
                 {
-                    Touch touch = touches[0];
-                    touch.moved(position);
-                    SKScene.current.touchMoved(touch);
+                    if (position != lastPosition)
+                    {
+                        Touch touch = touches[0];
+                        touch.moved(position);
+                        SKScene.current.touchMoved(touch);
+                    }
                 }
                 else
                 {
