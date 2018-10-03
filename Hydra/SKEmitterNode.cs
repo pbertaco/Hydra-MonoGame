@@ -15,7 +15,7 @@ namespace Hydra
 
         //Determining When Particles Are Created
         internal float particleBirthRate; // The rate at which new particles are created.
-        internal int numParticlesToEmit = -1; // The number of particles the emitter should emit before stopping.
+        internal int numParticlesToEmit; // The number of particles the emitter should emit before stopping.
         //ParticleRenderOrder particleRenderOrder; // The order in which the emitter’s particles are rendered.
 
         // Defining Which Node Emits Particles
@@ -86,8 +86,9 @@ namespace Hydra
 
         float particleCounter;
 
-        public SKEmitterNode() : base("spark")
+        public SKEmitterNode(int numParticlesToEmit) : base("spark")
         {
+            this.numParticlesToEmit = numParticlesToEmit;
             SKScene.current.emitterNodeList.Add(this);
         }
 
