@@ -22,23 +22,23 @@ namespace Hydra
     /// </summary>
     class Game1 : Game
     {
-        GraphicsDeviceManager graphicsDeviceManager;
-        internal static SpriteBatch spriteBatch;
+        internal GraphicsDeviceManager graphicsDeviceManager;
+        internal SpriteBatch spriteBatch;
 
-        internal static SpriteSortMode sortMode = SpriteSortMode.Deferred;
-        internal static BlendState blendState = BlendState.AlphaBlend;
-        internal static SamplerState samplerState = SamplerState.LinearClamp;
-        internal static DepthStencilState depthStencilState = DepthStencilState.None;
-        internal static RasterizerState rasterizerState = RasterizerState.CullCounterClockwise;
-        internal static Effect effect = null;
-        internal static Matrix transformMatrix;
+        internal SpriteSortMode sortMode = SpriteSortMode.Deferred;
+        internal BlendState blendState = BlendState.AlphaBlend;
+        internal SamplerState samplerState = SamplerState.LinearClamp;
+        internal DepthStencilState depthStencilState = DepthStencilState.None;
+        internal RasterizerState rasterizerState = RasterizerState.CullCounterClockwise;
+        internal Effect effect = null;
+        internal Matrix transformMatrix;
 
         Dictionary<int, Touch> touches;
         MouseState lastMouseState;
 
         public ContentManager songManager;
 
-        internal static Game1 sharedInstance;
+        internal static Game1 current;
 
         public Game1()
         {
@@ -54,7 +54,7 @@ namespace Hydra
 
             touches = new Dictionary<int, Touch>();
 
-            sharedInstance = this;
+            current = this;
         }
 
         /// <summary>
@@ -134,6 +134,8 @@ namespace Hydra
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
 
             SKScene.current.contentManager = Content;
             SKScene.current.load();

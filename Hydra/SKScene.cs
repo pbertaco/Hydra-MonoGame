@@ -64,7 +64,7 @@ namespace Hydra
 
         internal Texture2D Texture2D(Vector2 size)
         {
-            return new Texture2D(Game1.sharedInstance.GraphicsDevice, (int)size.X, (int)size.Y);
+            return new Texture2D(Game1.current.GraphicsDevice, (int)size.X, (int)size.Y);
         }
 
         internal virtual void update()

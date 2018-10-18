@@ -172,6 +172,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Music.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Utils\Vector2Extension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\SKShapeNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hydra\SKEffectNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Hydra\Utils\" />

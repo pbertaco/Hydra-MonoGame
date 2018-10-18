@@ -47,7 +47,7 @@ namespace Hydra
             }
         }
 
-        Color drawColor;
+        protected Color drawColor;
 
         Color _color;
         internal Color color
@@ -95,7 +95,7 @@ namespace Hydra
         protected SpriteEffects effects;
         protected float layerDepth;
 
-        Vector2 drawScale;
+        protected Vector2 drawScale;
         Vector2 sizeScale;
 
         Vector2 _size;
@@ -175,6 +175,8 @@ namespace Hydra
         {
             base.beforeDraw();
 
+            Game1 Game1 = Game1.current;
+
             if (blendState != Game1.blendState)
             {
                 Game1.blendState = blendState;
@@ -192,7 +194,7 @@ namespace Hydra
 
             beforeDraw();
 
-            Game1.spriteBatch.Draw(texture2D,
+            Game1.current.spriteBatch.Draw(texture2D,
                                    currentPosition + position * currentScale,
                                    sourceRectangle,
                                    drawColor * alpha * currentAlpha,

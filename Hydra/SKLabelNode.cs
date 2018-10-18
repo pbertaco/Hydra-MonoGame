@@ -99,7 +99,7 @@ namespace Hydra
                 return;
             }
 
-            Game1.spriteBatch.DrawString(spriteFont,
+            Game1.current.spriteBatch.DrawString(spriteFont,
                                          text,
                                          currentPosition + position * currentScale,
                                          drawColor * alpha * currentAlpha,

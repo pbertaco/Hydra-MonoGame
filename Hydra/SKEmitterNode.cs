@@ -152,7 +152,7 @@ namespace Hydra
             
             foreach (var particle in particles)
             {
-                Game1.spriteBatch.Draw(texture2D, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, zRotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
+                Game1.current.spriteBatch.Draw(texture2D, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, zRotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
             }
 
 			drawChildren(currentPosition, currentAlpha, currentScale);
