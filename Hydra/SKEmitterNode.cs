@@ -50,12 +50,12 @@ namespace Hydra
         internal float particleScaleSpeed; // The rate at which a particle’s scale factor changes per second.
 
         // Setting a Particle’s Texture and Size
-        //particleTexture: Texture? // The texture to use to render a particle.
-        //particleSize: CGSize // The starting size of each particle.
+        internal Texture2D particleTexture { get => texture2D; set => texture2D = value; } // The texture to use to render a particle.
+        internal Vector2 particleSize; // The starting size of each particle.
 
         // Configuring Particle Color
         //particleColorSequence: KeyframeSequence? // The sequence used to specify the color components of a particle over its lifetime.
-        //particleColor: UIColor // The average initial color for a particle.
+        internal Color particleColor { get => color; set => color = value; } // The average initial color for a particle.
         internal float particleColorAlphaRange; // The range of allowed random values for the alpha component of a particle’s initial color.
         internal float particleColorBlueRange; // The range of allowed random values for the blue component of a particle’s initial color.
         internal float particleColorGreenRange; // The range of allowed random values for the green component of a particle’s initial color.
@@ -72,7 +72,8 @@ namespace Hydra
         internal float particleColorBlendFactorSpeed; // The rate at which the color blend factor changes per second.
 
         // Blending Particles with the Framebuffer
-        //particleBlendMode: BlendMode // The blending mode used to blend particles into the framebuffer.
+        internal BlendState particleBlendMode { get => blendState; set => blendState = value; } // The blending mode used to blend particles into the framebuffer.
+
         //particleAlphaSequence: KeyframeSequence? // The sequence used to specify the alpha value of a particle over its lifetime.
         internal float particleAlpha = 1; // The average starting alpha value for a particle.
         internal float particleAlphaRange; // The range of allowed random values for a particle’s starting alpha value.
@@ -141,7 +142,7 @@ namespace Hydra
             }
         }
 
-		internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
         {
             if (isHidden || currentAlpha <= 0.0f)
             {
@@ -149,13 +150,13 @@ namespace Hydra
             }
 
             beforeDraw();
-            
+
             foreach (var particle in particles)
             {
                 Game1.current.spriteBatch.Draw(texture2D, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, zRotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
             }
 
-			drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(currentPosition, currentAlpha, currentScale);
         }
     }
 }
