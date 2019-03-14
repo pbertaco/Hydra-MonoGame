@@ -42,9 +42,9 @@ namespace Hydra
             }
         }
 
-        internal SKAction with(SKActionTimingFunction timingFunction)
+        internal SKAction with(SKActionTimingFunction someTimingFunction)
         {
-            this.timingFunction = timingFunction;
+            timingFunction = someTimingFunction;
             return this;
         }
 
@@ -260,9 +260,10 @@ namespace Hydra
             return new ActionRemoveFromParent();
         }
 
-        //internal static SKAction run(Action block) {
-
-        //}
+        internal static SKAction run(Action block)
+        {
+            return new ActionRunBlock(block);
+        }
 
 
         internal virtual SKAction copy()

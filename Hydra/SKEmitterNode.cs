@@ -107,7 +107,8 @@ namespace Hydra
                     Particle particle = new Particle();
                     particle.birthTime = currentTime;
 
-                    particle.position = position;
+                    Vector2 randomPosition = new Vector2((float)(random.NextDouble() * particlePositionRange.X), (float)(random.NextDouble() * particlePositionRange.Y));
+                    particle.position = position - particlePositionRange / 2 + randomPosition;
 
                     float randomAngle = (float)(random.NextDouble() * emissionAngleRange);
                     float randomSpeed = (float)(random.NextDouble() * particleSpeedRange);
