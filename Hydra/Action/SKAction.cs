@@ -265,6 +265,33 @@ namespace Hydra
             return new ActionRunBlock(block);
         }
 
+        #region SKUtils
+
+        /// <summary>
+        /// Performs an action after the specified delay.
+        /// </summary>
+        internal static SKAction afterDelay(float delay, SKAction action)
+        {
+            return sequence(new[] { waitForDuration(delay), action });
+        }
+
+        /// <summary>
+        /// Performs a block after the specified delay.
+        /// </summary>
+        internal static SKAction afterDelay(float delay, Action block)
+        {
+            return afterDelay(delay, new ActionRunBlock(block));
+        }
+
+        /// <summary>
+        /// Removes the node from its parent after the specified delay.
+        /// </summary>
+        internal static SKAction removeFromParentAfterDelay(float delay)
+        {
+            return afterDelay(delay, new ActionRemoveFromParent());
+        }
+
+        #endregion
 
         internal virtual SKAction copy()
         {
