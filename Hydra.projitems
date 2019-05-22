@@ -173,7 +173,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Utils\Vector2Extension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\SKShapeNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hydra\Action\ActionRunBlock.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Hydra\Utils\SKActionExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Hydra\Utils\" />

@@ -13,23 +13,23 @@ namespace Hydra
 
         internal Vector2 delta;
 
-        public Touch(Vector2 position)
+        public Touch(Vector2 somePosition)
         {
-            lastPosition = position;
-            this.position = position;
+            lastPosition = somePosition;
+            position = somePosition;
         }
 
-        internal void moved(Vector2 position)
+        internal void moved(Vector2 somePosition)
         {
-            lastPosition = this.position;
-            this.position = position;
+            lastPosition = position;
+            position = somePosition;
             delta = lastPosition - position;
         }
 
-        internal void up(Vector2 position)
+        internal void up(Vector2 somePosition)
         {
-            lastPosition = this.position;
-            this.position = position;
+            lastPosition = position;
+            position = somePosition;
             delta = lastPosition - position;
         }
 
