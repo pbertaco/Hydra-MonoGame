@@ -104,8 +104,10 @@ namespace Hydra
                     numParticlesToEmit--;
                     particleCounter--;
 
-                    Particle particle = new Particle();
-                    particle.birthTime = currentTime;
+                    Particle particle = new Particle
+                    {
+                        birthTime = currentTime
+                    };
 
                     Vector2 randomPosition = new Vector2((float)(random.NextDouble() * particlePositionRange.X), (float)(random.NextDouble() * particlePositionRange.Y));
                     particle.position = position - particlePositionRange / 2 + randomPosition;
@@ -130,7 +132,7 @@ namespace Hydra
 
             for (int i = particles.Count - 1; i >= 0; i--)
             {
-                var particle = particles[i];
+                Particle particle = particles[i];
 
                 if (currentTime - particle.birthTime > particle.lifetime)
                 {
@@ -143,21 +145,21 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal override void draw(Vector2 parentPosition, float parentAlpha, Vector2 parentScale)
         {
-            if (isHidden || currentAlpha <= 0.0f)
+            if (isHidden || parentAlpha <= 0.0f)
             {
                 return;
             }
 
             beforeDraw();
 
-            foreach (var particle in particles)
+            foreach (Particle particle in particles)
             {
-                Game1.current.spriteBatch.Draw(texture2D, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, zRotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
+                Game1.current.spriteBatch.Draw(texture2D, parentPosition + particle.position * parentScale, sourceRectangle, color * parentAlpha * particle.alpha, zRotation, origin, parentScale * scale * particle.scale, effects, layerDepth);
             }
 
-            drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(parentPosition, parentAlpha, parentScale);
         }
     }
 }

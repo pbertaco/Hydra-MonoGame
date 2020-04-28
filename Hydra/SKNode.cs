@@ -15,10 +15,7 @@ namespace Hydra
         Vector2 _position;
         internal Vector2 position
         {
-            get
-            {
-                return _position;
-            }
+            get => _position;
             set
             {
                 if (physicsBody != null)
@@ -32,10 +29,7 @@ namespace Hydra
         float _zRotation;
         internal float zRotation
         {
-            get
-            {
-                return _zRotation;
-            }
+            get => _zRotation;
             set
             {
                 _zRotation = value;
@@ -62,10 +56,7 @@ namespace Hydra
         SKPhysicsBody _physicsBody;
         internal SKPhysicsBody physicsBody
         {
-            get
-            {
-                return _physicsBody;
-            }
+            get => _physicsBody;
             set
             {
                 _physicsBody = value;
@@ -75,7 +66,7 @@ namespace Hydra
         }
 
         internal Dictionary<string, SKAction> actions;
-        internal List<String> actionsToRemove;
+        internal List<string> actionsToRemove;
 
         internal float alpha = 1.0f;
 
@@ -260,8 +251,12 @@ namespace Hydra
             }
         }
 
-        internal virtual void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal virtual void draw(Vector2 parentPosition, float parentAlpha, Vector2 parentScale)
         {
+            Vector2 position = currentPosition(parentPosition, parentScale);
+            float alpha = currentAlpha(parentAlpha);
+            Vector2 scale = currentScale(parentScale);
+
             if (isHidden || alpha <= 0.0f)
             {
                 return;
@@ -269,30 +264,42 @@ namespace Hydra
 
             beforeDraw();
 
-            drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(position, alpha, scale);
         }
 
-        protected void drawChildren(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        protected void drawChildren(Vector2 position, float alpha, Vector2 scale)
         {
             foreach (SKNode node in children)
             {
-                node.draw(currentPosition + position * currentScale, currentAlpha * alpha, currentScale * scale);
+                node.draw(position, alpha, scale);
             }
         }
 
-        internal Vector2 positionInNode(SKNode node)
-        {
-            return drawPosition(Vector2.Zero) - node.drawPosition(Vector2.Zero);
-        }
-
-        Vector2 drawPosition(Vector2 currentPosition)
+        internal Vector2 currentPosition()
         {
             if (parent != null)
             {
-                return parent.drawPosition(currentPosition + position);
+                return parent.position + position * parent.scale;
             }
+            else
+            {
+                return position;
+            }
+        }
 
-            return currentPosition + position;
+        internal Vector2 currentPosition(Vector2 parentPosition, Vector2 parentScale)
+        {
+            return parentPosition + position * parentScale;
+        }
+
+        internal float currentAlpha(float parentAlpha)
+        {
+            return parentAlpha * alpha;
+        }
+
+        internal virtual Vector2 currentScale(Vector2 parentScale)
+        {
+            return parentScale * scale;
         }
 
         internal virtual bool contains(Vector2 somePosition)

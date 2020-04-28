@@ -114,11 +114,12 @@ namespace Hydra
             currentSize.X = graphicsDeviceManager.PreferredBackBufferWidth / scale;
             currentSize.Y = graphicsDeviceManager.PreferredBackBufferHeight / scale;
 
-            SKScene.translate.X = (currentSize.X - defaultSize.X) / 2.0f;
-            SKScene.translate.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
+            SKScene.position.X = (currentSize.X - defaultSize.X) / 2.0f;
+            SKScene.position.Y = (currentSize.Y - defaultSize.Y) / 2.0f;
 
-            transformMatrix = Matrix.CreateScale(scale);
-            SKScene.currentSize = currentSize;
+            SKScene.scale = currentSize;
+            SKScene.scale = new Vector2(scale);
+            transformMatrix = Matrix.CreateScale(1.0f);
 
             if (SKScene.current != null)
             {
@@ -200,12 +201,8 @@ namespace Hydra
 
             MouseState mouseState = Mouse.GetState();
 
-            Vector2 lastPosition = new Vector2(
-                lastMouseState.X / transformMatrix.M11,
-                lastMouseState.Y / transformMatrix.M22);
-            Vector2 position = new Vector2(
-                mouseState.X / transformMatrix.M11,
-                mouseState.Y / transformMatrix.M22);
+            Vector2 lastPosition = new Vector2(lastMouseState.X, lastMouseState.Y);
+            Vector2 position = new Vector2(mouseState.X, mouseState.Y);
 
             if (mouseState.LeftButton == ButtonState.Pressed)
             {

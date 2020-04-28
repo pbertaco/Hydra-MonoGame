@@ -91,7 +91,6 @@ namespace Hydra
             }
         }
 
-
         protected SpriteEffects effects;
         protected float layerDepth;
 
@@ -159,16 +158,12 @@ namespace Hydra
 
         void load(Texture2D texture, Color someColor, Vector2 someSize)
         {
-            anchorPoint = Vector2.One * 0.5f;
+            anchorPoint = new Vector2(0.5f);
             texture2D = texture;
-            position = Vector2.Zero;
-            sourceRectangle = null;
             color = someColor;
-            zRotation = 0;
             scale = Vector2.One;
             size = someSize;
             effects = SpriteEffects.None;
-            layerDepth = 0.0f;
         }
 
         internal override void beforeDraw()
@@ -185,8 +180,12 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal override void draw(Vector2 parentPosition, float parentAlpha, Vector2 parentScale)
         {
+            Vector2 position = currentPosition(parentPosition, parentScale);
+            float alpha = currentAlpha(parentAlpha);
+            Vector2 scale = currentScale(parentScale);
+
             if (isHidden || alpha <= 0.0f)
             {
                 return;
@@ -195,16 +194,21 @@ namespace Hydra
             beforeDraw();
 
             Game1.current.spriteBatch.Draw(texture2D,
-                                   currentPosition + position * currentScale,
+                                   position,
                                    sourceRectangle,
-                                   drawColor * alpha * currentAlpha,
+                                   drawColor * alpha,
                                    zRotation,
                                    origin,
-                                   currentScale * drawScale,
+                                   scale,
                                    effects,
                                    layerDepth);
 
-            drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren(position, alpha, scale);
+        }
+
+        internal override Vector2 currentScale(Vector2 parentScale)
+        {
+            return parentScale * drawScale;
         }
 
         internal void setScaleToFit(float width, float height)

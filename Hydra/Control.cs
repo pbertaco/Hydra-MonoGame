@@ -42,10 +42,7 @@ namespace Hydra
 
         internal static Vector2 positionWith(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
-            return new Vector2(
-                sketchPosition.X + (SKScene.translate.X * (float)horizontalAlignment),
-                sketchPosition.Y + (SKScene.translate.Y * (float)verticalAlignment)
-                );
+            return new Vector2(sketchPosition.X + (SKScene.position.X * (float)horizontalAlignment), sketchPosition.Y + (SKScene.position.Y * (float)verticalAlignment));
         }
 
         internal virtual void resetPosition()

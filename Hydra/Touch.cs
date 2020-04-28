@@ -35,7 +35,7 @@ namespace Hydra
 
         internal Vector2 locationIn(SKNode node)
         {
-            return position - node.positionInNode(SKScene.current);
+            return position;// - node.positionInNode(SKScene.current);
         }
     }
 }

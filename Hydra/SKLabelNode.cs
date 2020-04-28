@@ -92,7 +92,7 @@ namespace Hydra
             layerDepth = 0;
         }
 
-		internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+		internal override void draw(Vector2 parentPosition, float parentAlpha, Vector2 parentScale)
         {
 			if (isHidden || alpha <= 0.0f)
             {
@@ -101,15 +101,15 @@ namespace Hydra
 
             Game1.current.spriteBatch.DrawString(spriteFont,
                                          text,
-                                         currentPosition + position * currentScale,
-                                         drawColor * alpha * currentAlpha,
+                                         parentPosition + position,
+                                         drawColor * alpha * parentAlpha,
                                          zRotation,
                                          origin,
-                                         currentScale * scale * 0.370967742f, // TODO: currentScale * drawScale
+                                         parentScale * scale * 0.370967742f, // TODO: parentScale * drawScale
                                          effects,
                                          layerDepth);
             
-			base.draw(currentPosition, currentAlpha, currentScale);
+			base.draw(parentPosition, parentAlpha, parentScale);
         }
     }
 }

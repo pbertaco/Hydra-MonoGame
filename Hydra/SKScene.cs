@@ -15,8 +15,9 @@ namespace Hydra
     {
         internal static SKScene current;
         internal static Color backgroundColor = GameColors.backgroundColor;
-        internal static Vector2 translate;
-        internal static Vector2 currentSize;
+        internal static new Vector2 position;
+        internal static new Vector2 scale;
+        internal static Vector2 size;
         internal static Vector2 defaultSize = new Vector2(667, 375);
 
         internal ContentManager contentManager;
@@ -146,12 +147,12 @@ namespace Hydra
 
             didFinishUpdate();
 
-            foreach (var emitterNode in emitterNodeList)
+            foreach (SKEmitterNode emitterNode in emitterNodeList)
             {
                 emitterNode.update(currentTime, elapsedTime);
             }
 
-            base.draw(Vector2.Zero, 1.0f, Vector2.One);
+            base.draw(position, 1.0f, scale);
         }
 
         internal void addChild(Box box)

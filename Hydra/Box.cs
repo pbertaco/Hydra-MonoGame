@@ -34,7 +34,7 @@ namespace Hydra
             {
                 color = Color.Black,
                 alpha = 0.5f,
-                size = SKScene.currentSize
+                size = SKScene.scale
             };
 
             if (animated)
@@ -88,7 +88,8 @@ namespace Hydra
 
             if (blackSpriteNode != null)
             {
-                blackSpriteNode.size = SKScene.currentSize;
+                blackSpriteNode.size = SKScene.scale;
+                blackSpriteNode.scale = SKScene.scale;
             }
         }
 
