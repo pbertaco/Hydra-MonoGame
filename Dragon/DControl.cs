@@ -30,7 +30,7 @@ namespace Dragon
             DScene.current.controlList.Add(this);
         }
 
-        internal static Vector2 position(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
+        internal static Vector2 calculatePosition(Vector2 sketchPosition, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
             float x = sketchPosition.X + (DScene.current.position.X * (float)horizontalAlignment);
             float y = sketchPosition.Y + (DScene.current.position.Y * (float)verticalAlignment);
@@ -41,13 +41,13 @@ namespace Dragon
         {
             if (parent == DScene.current)
             {
-                position = position(sketchPosition, horizontalAlignment, verticalAlignment);
+                position = calculatePosition(sketchPosition, horizontalAlignment, verticalAlignment);
             }
         }
 
-        internal Vector2 position(Vector2 someSketchPosition)
+        internal Vector2 calculatePosition(Vector2 someSketchPosition)
         {
-            return position(someSketchPosition, horizontalAlignment, verticalAlignment);
+            return calculatePosition(someSketchPosition, horizontalAlignment, verticalAlignment);
         }
 
         internal void setAlignment(HorizontalAlignment someHorizontalAlignment, VerticalAlignment someVerticalAlignment)
