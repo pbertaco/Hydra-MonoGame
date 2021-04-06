@@ -76,6 +76,7 @@ namespace FarseerPhysics.Common.Decomposition
 
             List<Vertices> results;
 
+#pragma warning disable CS0162 // Unreachable code detected
             switch (algorithm)
             {
                 case TriangulationAlgorithm.Earclip:
@@ -135,6 +136,7 @@ namespace FarseerPhysics.Common.Decomposition
                 default:
                     throw new ArgumentOutOfRangeException("algorithm");
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             if (discardAndFixInvalid)
             {

@@ -1012,11 +1012,13 @@ namespace FarseerPhysics.Dynamics
                 // Also, some contacts can be destroyed.
                 ContactManager.FindNewContacts();
 
+#pragma warning disable CS0162 // Unreachable code detected
                 if (Settings.EnableSubStepping)
                 {
                     _stepComplete = false;
                     break;
                 }
+#pragma warning restore CS0162 // Unreachable code detected
             }
 #if OPTIMIZE_TOI
             if (wasStepComplete)

@@ -169,6 +169,7 @@ namespace FarseerPhysics.Dynamics.Contacts
                     ManifoldPoint cp = manifold.Points[j];
                     VelocityConstraintPoint vcp = vc.points[j];
 
+#pragma warning disable CS0162 // Unreachable code detected
                     if (Settings.EnableWarmstarting)
                     {
                         vcp.normalImpulse = _step.dtRatio * cp.NormalImpulse;
@@ -179,6 +180,7 @@ namespace FarseerPhysics.Dynamics.Contacts
                         vcp.normalImpulse = 0.0f;
                         vcp.tangentImpulse = 0.0f;
                     }
+#pragma warning restore CS0162 // Unreachable code detected
 
                     vcp.rA = Vector2.Zero;
                     vcp.rB = Vector2.Zero;
@@ -479,8 +481,9 @@ namespace FarseerPhysics.Dynamics.Contacts
                     // Compute b'
                     b -= MathUtils.Mul(ref vc.K, a);
 
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
                     const float k_errorTol = 1e-3f;
-                    //B2_NOT_USED(k_errorTol);
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
                     for (; ; )
                     {
@@ -935,7 +938,11 @@ namespace FarseerPhysics.Dynamics.Contacts
                             Vector2 pointA = MathUtils.Mul(ref xfA, pc.localPoint);
                             Vector2 pointB = MathUtils.Mul(ref xfB, pc.localPoints[0]);
                             normal = pointB - pointA;
-                            normal.Normalize();
+
+                            //FPE: Fix to handle zero normalization
+                            if (normal != Vector2.Zero)
+                                normal.Normalize();
+
                             point = 0.5f * (pointA + pointB);
                             separation = Vector2.Dot(pointB - pointA, normal) - pc.radiusA - pc.radiusB;
                         }

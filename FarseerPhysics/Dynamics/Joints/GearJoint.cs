@@ -314,6 +314,7 @@ namespace FarseerPhysics.Dynamics.Joints
             // Compute effective mass.
             _mass = _mass > 0.0f ? 1.0f / _mass : 0.0f;
 
+#pragma warning disable CS0162 // Unreachable code detected
             if (Settings.EnableWarmstarting)
             {
                 vA += (_mA * _impulse) * _JvAC;
@@ -329,6 +330,7 @@ namespace FarseerPhysics.Dynamics.Joints
             {
                 _impulse = 0.0f;
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             data.velocities[_indexA].v = vA;
             data.velocities[_indexA].w = wA;

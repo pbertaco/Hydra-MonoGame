@@ -295,6 +295,7 @@ namespace FarseerPhysics.Dynamics.Contacts
             {
                 if (touching)
                 {
+#pragma warning disable CS0162 // Unreachable code detected
                     if (Settings.AllCollisionCallbacksAgree)
                     {
                         bool enabledA = true, enabledB = true;
@@ -334,6 +335,7 @@ namespace FarseerPhysics.Dynamics.Contacts
                         if (contactManager.BeginContact != null)
                             Enabled = contactManager.BeginContact(this);
                     }
+#pragma warning restore CS0162 // Unreachable code detected
 
                     // If the user disabled the contact (needed to exclude it in TOI solver) at any point by
                     // any of the callbacks, we need to mark it as not touching and call any separation

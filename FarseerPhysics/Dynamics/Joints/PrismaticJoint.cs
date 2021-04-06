@@ -515,6 +515,7 @@ namespace FarseerPhysics.Dynamics.Joints
                 MotorImpulse = 0.0f;
             }
 
+#pragma warning disable CS0162 // Unreachable code detected
             if (Settings.EnableWarmstarting)
             {
                 // Account for variable time step.
@@ -536,6 +537,7 @@ namespace FarseerPhysics.Dynamics.Joints
                 _impulse = Vector3.Zero;
                 MotorImpulse = 0.0f;
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             data.velocities[_indexA].v = vA;
             data.velocities[_indexA].w = wA;

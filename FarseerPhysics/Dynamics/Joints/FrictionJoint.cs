@@ -183,6 +183,7 @@ namespace FarseerPhysics.Dynamics.Joints
                 _angularMass = 1.0f / _angularMass;
             }
 
+#pragma warning disable CS0162 // Unreachable code detected
             if (Settings.EnableWarmstarting)
             {
                 // Scale impulses to support a variable time step.
@@ -197,9 +198,11 @@ namespace FarseerPhysics.Dynamics.Joints
             }
             else
             {
+
                 _linearImpulse = Vector2.Zero;
                 _angularImpulse = 0.0f;
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             data.velocities[_indexA].v = vA;
             data.velocities[_indexA].w = wA;

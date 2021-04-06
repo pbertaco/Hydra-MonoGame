@@ -39,7 +39,9 @@ namespace FarseerPhysics.Common.Decomposition.CDT
     {
         public readonly List<TriangulationPoint> Points = new List<TriangulationPoint>(200);
         public readonly List<DelaunayTriangle> Triangles = new List<DelaunayTriangle>();
+#pragma warning disable CS0414 // Field is assigned but its value is never used
         private int _stepTime = -1;
+#pragma warning restore CS0414 // Field is assigned but its value is never used
 
         public TriangulationContext()
         {

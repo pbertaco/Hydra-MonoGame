@@ -213,6 +213,7 @@ namespace FarseerPhysics.Dynamics.Joints
             // Cheat with some damping
             wA *= 0.98f;
 
+#pragma warning disable CS0162 // Unreachable code detected
             if (Settings.EnableWarmstarting)
             {
                 _impulse *= data.step.dtRatio;
@@ -223,6 +224,7 @@ namespace FarseerPhysics.Dynamics.Joints
             {
                 _impulse = Vector2.Zero;
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             data.velocities[_indexA].v = vA;
             data.velocities[_indexA].w = wA;

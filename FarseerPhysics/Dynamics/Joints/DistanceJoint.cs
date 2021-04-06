@@ -239,6 +239,7 @@ namespace FarseerPhysics.Dynamics.Joints
                 _bias = 0.0f;
             }
 
+#pragma warning disable CS0162 // Unreachable code detected
             if (Settings.EnableWarmstarting)
             {
                 // Scale the impulse to support a variable time step.
@@ -254,6 +255,7 @@ namespace FarseerPhysics.Dynamics.Joints
             {
                 _impulse = 0.0f;
             }
+#pragma warning restore CS0162 // Unreachable code detected
 
             data.velocities[_indexA].v = vA;
             data.velocities[_indexA].w = wA;
