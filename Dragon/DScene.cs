@@ -40,10 +40,6 @@ namespace Dragon
         {
         }
 
-        internal virtual void update()
-        {
-        }
-
         internal virtual void didFinishUpdate()
         {
         }

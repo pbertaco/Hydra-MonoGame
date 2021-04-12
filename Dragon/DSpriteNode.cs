@@ -8,8 +8,10 @@ namespace Dragon
     public class DSpriteNode : DNode
     {
         internal Texture2D texture;
-        protected Rectangle? sourceRectangle;
+        internal BlendState blendState = BlendState.AlphaBlend;
         internal Color color;
+
+        protected Rectangle? sourceRectangle;
         protected Vector2 anchorPoint;
         protected SpriteEffects spriteEffects;
         protected float layerDepth;
@@ -71,6 +73,20 @@ namespace Dragon
             spriteEffects = SpriteEffects.None;
             layerDepth = 0;
             size = someSize ?? textureSize;
+        }
+
+        internal override void beforeDraw(Vector2 currentPosition, float currentRotation, Vector2 currentScale, float currentAlpha)
+        {
+            base.beforeDraw(currentPosition, currentRotation, currentScale, currentAlpha);
+
+            DGame game = DGame.current;
+
+            if (blendState != game.blendState)
+            {
+                game.blendState = blendState;
+                game.spriteBatch.End();
+                game.spriteBatch.Begin(game.sortMode, game.blendState, game.samplerState, game.depthStencilState, game.rasterizerState, game.effect, game.transformMatrix);
+            }
         }
 
         internal override void draw(Vector2 currentPosition, float currentRotation, Vector2 currentScale, float currentAlpha)

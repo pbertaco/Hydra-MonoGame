@@ -7,11 +7,11 @@ using FarseerPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hydra
+namespace Dragon
 {
-    class SKEmitterNode : SKSpriteNode
+    class DEmitterNode : DSpriteNode
     {
-        List<Particle> particles = new List<Particle>();
+        List<DParticle> particles = new List<DParticle>();
 
         //Determining When Particles Are Created
         internal float particleBirthRate; // The rate at which new particles are created.
@@ -19,7 +19,7 @@ namespace Hydra
         //ParticleRenderOrder particleRenderOrder; // The order in which the emitter’s particles are rendered.
 
         // Defining Which Node Emits Particles
-        internal SKNode targetNode; // The target node which renders the emitter’s particles.
+        internal DNode targetNode; // The target node which renders the emitter’s particles.
 
         // Determining a Particle Lifetime
         internal float particleLifetime; // The average lifetime of a particle, in seconds.
@@ -50,7 +50,7 @@ namespace Hydra
         internal float particleScaleSpeed; // The rate at which a particle’s scale factor changes per second.
 
         // Setting a Particle’s Texture and Size
-        internal Texture2D particleTexture { get => texture2D; set => texture2D = value; } // The texture to use to render a particle.
+        internal Texture2D particleTexture { get => texture; set => texture = value; } // The texture to use to render a particle.
         internal Vector2 particleSize; // The starting size of each particle.
 
         // Configuring Particle Color
@@ -87,14 +87,16 @@ namespace Hydra
 
         float particleCounter;
 
-        public SKEmitterNode(int numParticlesToEmit) : base("spark")
+        public DEmitterNode(int numParticlesToEmit) : base("spark")
         {
             this.numParticlesToEmit = numParticlesToEmit;
-            SKScene.current.emitterNodeList.Add(this);
         }
 
-        internal void update(float currentTime, float elapsedTime)
+        internal override void update()
         {
+            float currentTime = DGame.current.currentTime;
+            float elapsedTime = DGame.current.elapsedTime;
+
             if (numParticlesToEmit != 0)
             {
                 particleCounter += particleBirthRate * elapsedTime;
@@ -104,7 +106,7 @@ namespace Hydra
                     numParticlesToEmit--;
                     particleCounter--;
 
-                    Particle particle = new Particle();
+                    DParticle particle = new DParticle();
                     particle.birthTime = currentTime;
 
                     Vector2 randomPosition = new Vector2((float)(random.NextDouble() * particlePositionRange.X), (float)(random.NextDouble() * particlePositionRange.Y));
@@ -143,21 +145,23 @@ namespace Hydra
             }
         }
 
-        internal override void draw(Vector2 currentPosition, float currentAlpha, Vector2 currentScale)
+        internal override void draw(Vector2 currentPosition, float currentRotation, Vector2 currentScale, float currentAlpha)
         {
             if (isHidden || currentAlpha <= 0.0f)
             {
                 return;
             }
 
-            beforeDraw();
+            beforeDraw(currentPosition, 0.0f, currentScale, currentAlpha);
 
             foreach (var particle in particles)
             {
-                Game1.current.spriteBatch.Draw(texture2D, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, zRotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
+                Vector2 origin = default;
+                SpriteEffects effects = default;
+                DGame.current.spriteBatch.Draw(texture, currentPosition + particle.position * currentScale, sourceRectangle, color * currentAlpha * particle.alpha, rotation, origin, currentScale * scale * particle.scale, effects, layerDepth);
             }
 
-            drawChildren(currentPosition, currentAlpha, currentScale);
+            drawChildren();
         }
     }
 }

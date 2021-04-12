@@ -159,6 +159,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DPhysicsBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DEmitterNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DServerManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DParticle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Content\" />

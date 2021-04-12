@@ -17,13 +17,13 @@ namespace Dragon
         internal float currentTime;
         internal float elapsedTime;
 
-        SpriteSortMode sortMode = SpriteSortMode.Deferred;
-        BlendState blendState = null;
-        SamplerState samplerState = null;
-        DepthStencilState depthStencilState = null;
-        RasterizerState rasterizerState = null;
-        Effect effect = null;
-        Matrix? transformMatrix = null;
+        internal SpriteSortMode sortMode = SpriteSortMode.Deferred;
+        internal BlendState blendState = null;
+        internal SamplerState samplerState = null;
+        internal DepthStencilState depthStencilState = null;
+        internal RasterizerState rasterizerState = null;
+        internal Effect effect = null;
+        internal Matrix? transformMatrix = null;
 
         GraphicsDeviceManager graphicsDeviceManager;
         DScene scene;

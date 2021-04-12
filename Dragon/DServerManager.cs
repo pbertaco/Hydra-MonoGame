@@ -15,18 +15,18 @@ using Microsoft.Xna.Framework.Media;
 using Lidgren.Network;
 using System.Threading.Tasks;
 
-namespace Hydra
+namespace Dragon
 {
-    class ServerManager
+    class DServerManager
     {
-        internal static ServerManager current;
+        internal static DServerManager current;
 
         NetPeerConfiguration peerConfiguration;
 
         NetServer server;
         NetClient client;
 
-        public ServerManager(string appIdentifier, int port = 8900, int maximumConnections = 32)
+        public DServerManager(string appIdentifier, int port = 8900, int maximumConnections = 32)
         {
             peerConfiguration = new NetPeerConfiguration(appIdentifier)
             {

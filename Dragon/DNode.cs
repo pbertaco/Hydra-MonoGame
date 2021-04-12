@@ -34,6 +34,14 @@ namespace Dragon
             actionsToRemove = new List<string>();
         }
 
+        internal virtual void update()
+        {
+            foreach (DNode node in children)
+            {
+                node.update();
+            }
+        }
+
         internal virtual void beforeDraw(Vector2 currentPosition, float currentRotation, Vector2 currentScale, float currentAlpha)
         {
             drawPosition = currentPosition + position.rotateBy(currentRotation) * currentScale;
@@ -92,7 +100,7 @@ namespace Dragon
             }
         }
 
-        internal void removeFromParent()
+        internal virtual void removeFromParent()
         {
             if (parent != null)
             {
