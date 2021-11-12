@@ -22,9 +22,6 @@ namespace Hydra
 
         internal void play(string someMusicName)
         {
-#if DEBUG
-            return;
-#endif
             if (musicName == someMusicName) { return; }
 
             contentManager.Unload();
@@ -35,9 +32,11 @@ namespace Hydra
 
             if (song != null)
             {
-                Microsoft.Xna.Framework.Media.MediaPlayer.Play(song);
-            } else {
-                Microsoft.Xna.Framework.Media.MediaPlayer.Stop();
+                MediaPlayer.Play(song);
+            }
+            else
+            {
+                MediaPlayer.Stop();
             }
         }
 
@@ -59,12 +58,12 @@ namespace Hydra
 
         internal void pause()
         {
-            Microsoft.Xna.Framework.Media.MediaPlayer.Pause();
+            MediaPlayer.Pause();
         }
 
         internal void stop()
         {
-            Microsoft.Xna.Framework.Media.MediaPlayer.Stop();
+            MediaPlayer.Stop();
         }
     }
 }

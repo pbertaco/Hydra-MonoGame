@@ -32,7 +32,7 @@ namespace FarseerPhysics.Controllers
         {
             foreach (Body body in World.BodyList)
             {
-                //TODO: Consider Force Type
+                // Consider Force Type
                 float decayMultiplier = GetDecayMultiplier(body);
 
                 if (decayMultiplier != 0)
@@ -53,7 +53,7 @@ namespace FarseerPhysics.Controllers
                             forceVector = new Vector2(0, 1);
                     }
 
-                    //TODO: Consider Divergence:
+                    // Consider Divergence:
                     //forceVector = Vector2.Transform(forceVector, Matrix.CreateRotationZ((MathHelper.Pi - MathHelper.Pi/2) * (float)Randomize.NextDouble()));
 
                     // Calculate random Variation

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Dragon;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
 namespace Hydra
 {
-    class SKShapeNode : SKSpriteNode
+    class SKShapeNode : DSpriteNode
     {
         public SKShapeNode(int radius) : base("")
         {
@@ -52,10 +54,9 @@ namespace Hydra
                 }
             }
 
-            texture2D = SKScene.current.Texture2D(new Vector2(diameter, diameter));
-            texture2D.SetData(colors);
+            texture = DGame.current.contentManager.newTexture2D(diameter, diameter, colors);
 
-            size = texture2D.Bounds.Size.ToVector2();
+            size = texture.Bounds.Size.ToVector2();
         }
     }
 }

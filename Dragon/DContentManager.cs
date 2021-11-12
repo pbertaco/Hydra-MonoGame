@@ -34,7 +34,7 @@ namespace Dragon
         {
             if (assetName == null || assetName == "")
             {
-                return newTexture2D();
+                return newTexture2D(1, 1, new Color[] { Color.White });
             }
 
             return newTexture2D(assetName);
@@ -95,10 +95,10 @@ namespace Dragon
             return texture;
         }
 
-        Texture2D newTexture2D()
+        internal Texture2D newTexture2D<T>(int width, int height, T[] data) where T : struct
         {
-            Texture2D texture = new Texture2D(graphicsDevice, 1, 1);
-            texture.SetData(new Color[] { Color.White });
+            Texture2D texture = new Texture2D(graphicsDevice, width, height);
+            texture.SetData(data);
             return texture;
         }
 

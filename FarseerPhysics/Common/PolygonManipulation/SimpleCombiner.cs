@@ -131,7 +131,7 @@ namespace FarseerPhysics.Common.PolygonManipulation
                 }
             }
 
-            //TODO: Add sanity check
+            // Add sanity check
             //Remove empty vertice collections
             for (int i = polys.Count - 1; i >= 0; i--)
             {

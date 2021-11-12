@@ -10,18 +10,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Hydra
+namespace Dragon
 {
-    class Button : Control
+    class DButton : DControl
     {
         internal List<Action> touchUpEvent;
 
         internal ButtonState state;
 
-        SKSpriteNode icon;
-        Label label;
+        DSpriteNode icon;
+        DLabelNode label;
 
-        public Button(string assetName, float x = 0.0f, float y = 0.0f,
+        public DButton(string assetName, float x = 0.0f, float y = 0.0f,
                        HorizontalAlignment horizontalAlignment = HorizontalAlignment.left,
                       VerticalAlignment verticalAlignment = VerticalAlignment.top) : base(assetName, x, y, horizontalAlignment, verticalAlignment)
         {
@@ -29,7 +29,7 @@ namespace Hydra
 
             setAlignment(horizontalAlignment, verticalAlignment);
 
-            SKScene.current.buttonList.Add(this);
+            //DScene.current.buttonList.Add(this);
         }
 
         internal virtual void touchDown()
@@ -41,9 +41,9 @@ namespace Hydra
             float x = position.X + (size.X / 2.0f) * 0.05f;
             float y = position.Y + (size.Y / 2.0f) * 0.05f;
 
-            run(SKAction.group(new[] {
-                SKAction.scaleTo(0.95f, duration),
-                SKAction.moveTo(new Vector2(x, y), duration)
+            run(DAction.group(new[] {
+                DAction.scaleTo(0.95f, duration),
+                DAction.moveTo(new Vector2(x, y), duration)
             }), "Button.touchDown");
         }
 
@@ -51,10 +51,10 @@ namespace Hydra
         {
             float duration = 0.125f;
 
-            run(SKAction.group(new[] {
-                SKAction.scaleTo(1.0f, duration),
-                SKAction.moveTo(positionWith(sketchPosition), duration)
-            }), "Button.touchUp");
+            //run(DAction.group(new[] {
+            //    DAction.scaleTo(1.0f, duration),
+            //    DAction.moveTo(positionWith(sketchPosition), duration)
+            //}), "Button.touchUp");
         }
 
         internal void touchUpInside()
@@ -65,10 +65,15 @@ namespace Hydra
             }
         }
 
+        internal bool contains(Vector2 vector2)
+        {
+            return true;
+        }
+
         internal void setIcon(string assetName)
         {
-            Texture2D texture = SKScene.current.Texture2D(assetName);
-            SKSpriteNode newIcon = new SKSpriteNode(texture, color, texture.Bounds.Size.ToVector2());
+            Texture2D texture = DGame.current.contentManager.loadTexture2D(assetName);
+            DSpriteNode newIcon = new DSpriteNode(texture, color, texture.Bounds.Size.ToVector2());
 
             newIcon.setScaleToFit(size);
 
@@ -80,10 +85,11 @@ namespace Hydra
 
         }
 
-        internal void setLabel(Label someLabel) {
+        internal void setLabel(DLabelNode someLabel)
+        {
             label = someLabel;
-            label.sketchPosition += size / 2.0f;
-            label.resetPosition();
+            //label.sketchPosition += size / 2.0f;
+            //label.resetPosition();
             addChild(label);
         }
 

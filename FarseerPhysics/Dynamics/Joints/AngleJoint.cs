@@ -70,13 +70,13 @@ namespace FarseerPhysics.Dynamics.Joints
         /// Defaults to 0.2
         /// </summary>
         public float BiasFactor { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the maximum impulse
         /// Defaults to float.MaxValue
         /// </summary>
         public float MaxImpulse { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the softness of the joint
         /// Defaults to 0
@@ -85,7 +85,6 @@ namespace FarseerPhysics.Dynamics.Joints
 
         public override Vector2 GetReactionForce(float invDt)
         {
-            //TODO
             //return _inv_dt * _impulse;
             return Vector2.Zero;
         }

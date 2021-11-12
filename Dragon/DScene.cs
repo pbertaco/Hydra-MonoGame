@@ -13,6 +13,7 @@ namespace Dragon
         internal Vector2 viewSize;
         internal World physicsWorld;
         internal List<DControl> controlList = new List<DControl>();
+        internal DNode gameWorld;
 
         Vector2 viewScale;
         Vector2 viewPosition;

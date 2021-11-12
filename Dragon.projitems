@@ -9,7 +9,6 @@
     <Import_RootNamespace></Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Vector2Extension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DCameraNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DContentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DGame.cs" />
@@ -155,13 +154,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\Action\DActionSetTexture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\Action\DActionRunBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\Action\DActionRemoveFromParent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Action\Easing.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DFont.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DPhysicsBody.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DEmitterNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DServerManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragon\DParticle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Extensions\Vector2Extension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Action\DEasing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Control\DBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Control\DButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Control\DControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\Control\DLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DMemoryCard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DMusic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DPhysicsWorld.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragon\DShapeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Content\" />

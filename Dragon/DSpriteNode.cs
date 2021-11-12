@@ -98,5 +98,10 @@ namespace Dragon
             DGame.current.spriteBatch.Draw(texture, drawPosition, sourceRectangle, drawColor, drawRotation, drawOrigin, drawScale, spriteEffects, layerDepth);
             drawChildren();
         }
+
+        internal void setScaleToFit(Vector2 size)
+        {
+
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
         public void RemoveFromList(DelaunayTriangle triangle)
         {
             Triangles.Remove(triangle);
-            // TODO: remove all neighbor pointers to this triangle
+            //        remove all neighbor pointers to this triangle
             //        for( int i=0; i<3; i++ )
             //        {
             //            if( triangle.neighbors[i] != null )
@@ -133,7 +133,7 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
             aFront = new AdvancingFront(head, tail);
             aFront.AddNode(middle);
 
-            // TODO: I think it would be more intuitive if head is middles next and not previous
+            //       I think it would be more intuitive if head is middles next and not previous
             //       so swap head and tail
             aFront.Head.Next = middle;
             middle.Next = aFront.Tail;
@@ -184,8 +184,8 @@ namespace FarseerPhysics.Common.Decomposition.CDT.Delaunay.Sweep
                     ymin = p.Y;
             }
 
-            double deltaX = ALPHA*(xmax - xmin);
-            double deltaY = ALPHA*(ymax - ymin);
+            double deltaX = ALPHA * (xmax - xmin);
+            double deltaY = ALPHA * (ymax - ymin);
             TriangulationPoint p1 = new TriangulationPoint(xmax + deltaX, ymin - deltaY);
             TriangulationPoint p2 = new TriangulationPoint(xmin - deltaX, ymin - deltaY);
 

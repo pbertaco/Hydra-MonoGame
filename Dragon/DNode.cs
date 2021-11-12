@@ -9,6 +9,7 @@ namespace Dragon
     {
         internal static Random random = new Random();
 
+        internal string name;
         internal DNode parent;
         internal List<DNode> children;
         internal Vector2 position;
@@ -22,6 +23,7 @@ namespace Dragon
         internal float alpha;
         internal Dictionary<string, DAction> actions;
         internal List<string> actionsToRemove;
+        internal DPhysicsBody physicsBody;
 
         public DNode()
         {
