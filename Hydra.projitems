@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{4BE4D07A-8878-4FE3-AC3C-F45CAB5E96C5}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Hydra</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Action\DAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Action\DEasing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Action\" />
+  </ItemGroup>
+</Project>
